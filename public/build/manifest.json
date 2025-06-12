@@ -1,0 +1,1034 @@
+{
+  "__commonjs-dynamic-modules-TDtrdbi3.js": {
+    "file": "assets/_commonjs-dynamic-modules-TDtrdbi3.js",
+    "name": "_commonjs-dynamic-modules"
+  },
+  "__commonjsHelpers-BosuxZz1.js": {
+    "file": "assets/_commonjsHelpers-BosuxZz1.js",
+    "name": "_commonjsHelpers"
+  },
+  "_apexcharts.common-CHTSBbUw.js": {
+    "file": "assets/apexcharts.common-CHTSBbUw.js",
+    "name": "apexcharts.common",
+    "imports": [
+      "__commonjsHelpers-BosuxZz1.js"
+    ]
+  },
+  "_apexcharts.min-djLfbnMY.js": {
+    "file": "assets/apexcharts.min-djLfbnMY.js",
+    "name": "apexcharts.min",
+    "imports": [
+      "__commonjsHelpers-BosuxZz1.js"
+    ]
+  },
+  "_bootstrap-datepicker.min-D6teom5p.js": {
+    "file": "assets/bootstrap-datepicker.min-D6teom5p.js",
+    "name": "bootstrap-datepicker.min",
+    "imports": [
+      "_jquery-rTXOsbo7.js"
+    ]
+  },
+  "_bootstrap.min-Dymq8CO4.js": {
+    "file": "assets/bootstrap.min-Dymq8CO4.js",
+    "name": "bootstrap.min",
+    "imports": [
+      "__commonjsHelpers-BosuxZz1.js"
+    ]
+  },
+  "_chart.min-BCLaYQXP.js": {
+    "file": "assets/chart.min-BCLaYQXP.js",
+    "name": "chart.min",
+    "imports": [
+      "__commonjsHelpers-BosuxZz1.js"
+    ]
+  },
+  "_dataTables.bootstrap5.min-DTEHOskj.js": {
+    "file": "assets/dataTables.bootstrap5.min-DTEHOskj.js",
+    "name": "dataTables.bootstrap5.min",
+    "imports": [
+      "__commonjsHelpers-BosuxZz1.js",
+      "_jquery-rTXOsbo7.js"
+    ]
+  },
+  "_daterangepicker-kJNY4xn2.js": {
+    "file": "assets/daterangepicker-kJNY4xn2.js",
+    "name": "daterangepicker",
+    "imports": [
+      "__commonjsHelpers-BosuxZz1.js",
+      "_jquery-rTXOsbo7.js",
+      "_moment-zH0z38ay.js"
+    ]
+  },
+  "_isObject-DB8w6JNV.js": {
+    "file": "assets/isObject-DB8w6JNV.js",
+    "name": "isObject"
+  },
+  "_jquery-rTXOsbo7.js": {
+    "file": "assets/jquery-rTXOsbo7.js",
+    "name": "jquery",
+    "imports": [
+      "__commonjsHelpers-BosuxZz1.js"
+    ]
+  },
+  "_jquery.mask-n6opkwya.js": {
+    "file": "assets/jquery.mask-n6opkwya.js",
+    "name": "jquery.mask",
+    "imports": [
+      "_jquery-rTXOsbo7.js"
+    ]
+  },
+  "_moment-zH0z38ay.js": {
+    "file": "assets/moment-zH0z38ay.js",
+    "name": "moment"
+  },
+  "_quill-BaE4VG53.js": {
+    "file": "assets/quill-BaE4VG53.js",
+    "name": "quill",
+    "imports": [
+      "__commonjsHelpers-BosuxZz1.js",
+      "_isObject-DB8w6JNV.js"
+    ]
+  },
+  "_select2-C4vtoEwQ.js": {
+    "file": "assets/select2-C4vtoEwQ.js",
+    "name": "select2",
+    "imports": [
+      "__commonjsHelpers-BosuxZz1.js",
+      "_jquery-rTXOsbo7.js"
+    ]
+  },
+  "_select2.min-DHrdhkqh.js": {
+    "file": "assets/select2.min-DHrdhkqh.js",
+    "name": "select2.min",
+    "imports": [
+      "_jquery-rTXOsbo7.js"
+    ]
+  },
+  "_simplemde.min-Cfma5WSY.js": {
+    "file": "assets/simplemde.min-Cfma5WSY.js",
+    "name": "simplemde.min",
+    "imports": [
+      "__commonjsHelpers-BosuxZz1.js",
+      "__commonjs-dynamic-modules-TDtrdbi3.js"
+    ]
+  },
+  "_world-DIGAk8hl.js": {
+    "file": "assets/world-DIGAk8hl.js",
+    "name": "world"
+  },
+  "node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css": {
+    "file": "assets/bootstrap-datepicker-CxUEa4Ac.css",
+    "src": "node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css",
+    "isEntry": true
+  },
+  "node_modules/bootstrap-timepicker/css/bootstrap-timepicker.min.css": {
+    "file": "assets/bootstrap-timepicker-D2XrO_9p.css",
+    "src": "node_modules/bootstrap-timepicker/css/bootstrap-timepicker.min.css",
+    "isEntry": true
+  },
+  "node_modules/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.css": {
+    "file": "assets/jquery-Ms8hPV6t.css",
+    "src": "node_modules/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.css",
+    "isEntry": true
+  },
+  "node_modules/britecharts/dist/css/britecharts.min.css": {
+    "file": "assets/britecharts-Bv5ddayx.css",
+    "src": "node_modules/britecharts/dist/css/britecharts.min.css",
+    "isEntry": true
+  },
+  "node_modules/datatables.net-bs5/css/dataTables.bootstrap5.min.css": {
+    "file": "assets/dataTables.bootstrap5-BQB5JVIS.css",
+    "src": "node_modules/datatables.net-bs5/css/dataTables.bootstrap5.min.css",
+    "isEntry": true
+  },
+  "node_modules/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css": {
+    "file": "assets/buttons.bootstrap5-JmJmhzXu.css",
+    "src": "node_modules/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css",
+    "isEntry": true
+  },
+  "node_modules/datatables.net-fixedcolumns-bs5/css/fixedColumns.bootstrap5.min.css": {
+    "file": "assets/fixedColumns.bootstrap5-DldyE_yk.css",
+    "src": "node_modules/datatables.net-fixedcolumns-bs5/css/fixedColumns.bootstrap5.min.css",
+    "isEntry": true
+  },
+  "node_modules/datatables.net-fixedheader-bs5/css/fixedHeader.bootstrap5.min.css": {
+    "file": "assets/fixedHeader.bootstrap5-B9SGfXR8.css",
+    "src": "node_modules/datatables.net-fixedheader-bs5/css/fixedHeader.bootstrap5.min.css",
+    "isEntry": true
+  },
+  "node_modules/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css": {
+    "file": "assets/responsive.bootstrap5-D4PFXV94.css",
+    "src": "node_modules/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css",
+    "isEntry": true
+  },
+  "node_modules/datatables.net-select-bs5/css/select.bootstrap5.min.css": {
+    "file": "assets/select.bootstrap5-DgbRtJL3.css",
+    "src": "node_modules/datatables.net-select-bs5/css/select.bootstrap5.min.css",
+    "isEntry": true
+  },
+  "node_modules/daterangepicker/daterangepicker.css": {
+    "file": "assets/daterangepicker-CkNewIeD.css",
+    "src": "node_modules/daterangepicker/daterangepicker.css",
+    "isEntry": true
+  },
+  "node_modules/flatpickr/dist/flatpickr.min.css": {
+    "file": "assets/flatpickr-BArvkMiJ.css",
+    "src": "node_modules/flatpickr/dist/flatpickr.min.css",
+    "isEntry": true
+  },
+  "node_modules/frappe-gantt/dist/frappe-gantt.min.css": {
+    "file": "assets/frappe-gantt-i8xY_riV.css",
+    "src": "node_modules/frappe-gantt/dist/frappe-gantt.min.css",
+    "isEntry": true
+  },
+  "node_modules/jquery-toast-plugin/dist/jquery.toast.min.css": {
+    "file": "assets/jquery.toast-DZ87MWyh.css",
+    "src": "node_modules/jquery-toast-plugin/dist/jquery.toast.min.css",
+    "isEntry": true
+  },
+  "node_modules/jstree/dist/themes/default/32px.png": {
+    "file": "assets/32px-CHwblES-.png",
+    "src": "node_modules/jstree/dist/themes/default/32px.png"
+  },
+  "node_modules/jstree/dist/themes/default/40px.png": {
+    "file": "assets/40px-fA5gcXpO.png",
+    "src": "node_modules/jstree/dist/themes/default/40px.png"
+  },
+  "node_modules/jstree/dist/themes/default/style.min.css": {
+    "file": "assets/style-sNlI7ReR.css",
+    "src": "node_modules/jstree/dist/themes/default/style.min.css",
+    "isEntry": true
+  },
+  "node_modules/jstree/dist/themes/default/throbber.gif": {
+    "file": "assets/throbber-DhAvNIJO.gif",
+    "src": "node_modules/jstree/dist/themes/default/throbber.gif"
+  },
+  "node_modules/jsvectormap/dist/jsvectormap.min.css": {
+    "file": "assets/jsvectormap-Du_JhSQ8.css",
+    "src": "node_modules/jsvectormap/dist/jsvectormap.min.css",
+    "isEntry": true
+  },
+  "node_modules/quill/dist/quill.bubble.css": {
+    "file": "assets/quill-BcmieKoW.css",
+    "src": "node_modules/quill/dist/quill.bubble.css",
+    "isEntry": true
+  },
+  "node_modules/quill/dist/quill.core.css": {
+    "file": "assets/quill-8Vscci7T.css",
+    "src": "node_modules/quill/dist/quill.core.css",
+    "isEntry": true
+  },
+  "node_modules/quill/dist/quill.snow.css": {
+    "file": "assets/quill-D3eoGaYv.css",
+    "src": "node_modules/quill/dist/quill.snow.css",
+    "isEntry": true
+  },
+  "node_modules/select2/dist/css/select2.min.css": {
+    "file": "assets/select2-CzHLfan5.css",
+    "src": "node_modules/select2/dist/css/select2.min.css",
+    "isEntry": true
+  },
+  "node_modules/simplemde/dist/simplemde.min.css": {
+    "file": "assets/simplemde-Dx4Oy8ez.css",
+    "src": "node_modules/simplemde/dist/simplemde.min.css",
+    "isEntry": true
+  },
+  "public/images/bg-auth.jpg": {
+    "file": "assets/bg-auth-CrvvtrF3.jpg",
+    "src": "public/images/bg-auth.jpg"
+  },
+  "public/images/bg-pattern.png": {
+    "file": "assets/bg-pattern-Cm2TP5tm.png",
+    "src": "public/images/bg-pattern.png"
+  },
+  "public/images/treeview.png": {
+    "file": "assets/treeview-zJ-Lhh69.png",
+    "src": "public/images/treeview.png"
+  },
+  "public/images/waves.png": {
+    "file": "assets/waves-DxI5CvWx.png",
+    "src": "public/images/waves.png"
+  },
+  "resources/fonts/Nunito-Bold.eot": {
+    "file": "assets/Nunito-Bold-B9NMOACe.eot",
+    "src": "resources/fonts/Nunito-Bold.eot"
+  },
+  "resources/fonts/Nunito-Bold.svg": {
+    "file": "assets/Nunito-Bold-DeWSF-Mf.svg",
+    "src": "resources/fonts/Nunito-Bold.svg"
+  },
+  "resources/fonts/Nunito-Bold.ttf": {
+    "file": "assets/Nunito-Bold-D3NQSGmF.ttf",
+    "src": "resources/fonts/Nunito-Bold.ttf"
+  },
+  "resources/fonts/Nunito-Bold.woff": {
+    "file": "assets/Nunito-Bold-D1hhVO57.woff",
+    "src": "resources/fonts/Nunito-Bold.woff"
+  },
+  "resources/fonts/Nunito-Light.eot": {
+    "file": "assets/Nunito-Light-C5pGyQjp.eot",
+    "src": "resources/fonts/Nunito-Light.eot"
+  },
+  "resources/fonts/Nunito-Light.svg": {
+    "file": "assets/Nunito-Light-Dm7XfQTB.svg",
+    "src": "resources/fonts/Nunito-Light.svg"
+  },
+  "resources/fonts/Nunito-Light.ttf": {
+    "file": "assets/Nunito-Light-CYI3YKA4.ttf",
+    "src": "resources/fonts/Nunito-Light.ttf"
+  },
+  "resources/fonts/Nunito-Light.woff": {
+    "file": "assets/Nunito-Light-B_EYzY_r.woff",
+    "src": "resources/fonts/Nunito-Light.woff"
+  },
+  "resources/fonts/Nunito-Medium.eot": {
+    "file": "assets/Nunito-Medium-odQY7Nqb.eot",
+    "src": "resources/fonts/Nunito-Medium.eot"
+  },
+  "resources/fonts/Nunito-Medium.svg": {
+    "file": "assets/Nunito-Medium-B6Vg3E7v.svg",
+    "src": "resources/fonts/Nunito-Medium.svg"
+  },
+  "resources/fonts/Nunito-Medium.ttf": {
+    "file": "assets/Nunito-Medium-DuchDVBk.ttf",
+    "src": "resources/fonts/Nunito-Medium.ttf"
+  },
+  "resources/fonts/Nunito-Medium.woff": {
+    "file": "assets/Nunito-Medium-CrZE12nk.woff",
+    "src": "resources/fonts/Nunito-Medium.woff"
+  },
+  "resources/fonts/Nunito-Regular.eot": {
+    "file": "assets/Nunito-Regular-BbnRXcwH.eot",
+    "src": "resources/fonts/Nunito-Regular.eot"
+  },
+  "resources/fonts/Nunito-Regular.svg": {
+    "file": "assets/Nunito-Regular-B_jGSYMu.svg",
+    "src": "resources/fonts/Nunito-Regular.svg"
+  },
+  "resources/fonts/Nunito-Regular.ttf": {
+    "file": "assets/Nunito-Regular-CnuotMGd.ttf",
+    "src": "resources/fonts/Nunito-Regular.ttf"
+  },
+  "resources/fonts/Nunito-Regular.woff": {
+    "file": "assets/Nunito-Regular-DqHU6jNk.woff",
+    "src": "resources/fonts/Nunito-Regular.woff"
+  },
+  "resources/fonts/Nunito-SemiBold.eot": {
+    "file": "assets/Nunito-SemiBold-C1aP-i5Y.eot",
+    "src": "resources/fonts/Nunito-SemiBold.eot"
+  },
+  "resources/fonts/Nunito-SemiBold.svg": {
+    "file": "assets/Nunito-SemiBold-BgfN42aG.svg",
+    "src": "resources/fonts/Nunito-SemiBold.svg"
+  },
+  "resources/fonts/Nunito-SemiBold.ttf": {
+    "file": "assets/Nunito-SemiBold-QkeN4dUZ.ttf",
+    "src": "resources/fonts/Nunito-SemiBold.ttf"
+  },
+  "resources/fonts/Nunito-SemiBold.woff": {
+    "file": "assets/Nunito-SemiBold-CGB_oSHA.woff",
+    "src": "resources/fonts/Nunito-SemiBold.woff"
+  },
+  "resources/fonts/materialdesignicons-webfont.eot": {
+    "file": "assets/materialdesignicons-webfont-C9N43Jxz.eot",
+    "src": "resources/fonts/materialdesignicons-webfont.eot"
+  },
+  "resources/fonts/materialdesignicons-webfont.ttf": {
+    "file": "assets/materialdesignicons-webfont-hPx70ptL.ttf",
+    "src": "resources/fonts/materialdesignicons-webfont.ttf"
+  },
+  "resources/fonts/materialdesignicons-webfont.woff": {
+    "file": "assets/materialdesignicons-webfont-DSMUHRBL.woff",
+    "src": "resources/fonts/materialdesignicons-webfont.woff"
+  },
+  "resources/fonts/materialdesignicons-webfont.woff2": {
+    "file": "assets/materialdesignicons-webfont-D8huMFN2.woff2",
+    "src": "resources/fonts/materialdesignicons-webfont.woff2"
+  },
+  "resources/fonts/remixicon.eot": {
+    "file": "assets/remixicon-DUK49BtM.eot",
+    "src": "resources/fonts/remixicon.eot"
+  },
+  "resources/fonts/remixicon.svg": {
+    "file": "assets/remixicon-ncU_JTfY.svg",
+    "src": "resources/fonts/remixicon.svg"
+  },
+  "resources/fonts/remixicon.ttf": {
+    "file": "assets/remixicon-D9ZyeRwQ.ttf",
+    "src": "resources/fonts/remixicon.ttf"
+  },
+  "resources/fonts/remixicon.woff": {
+    "file": "assets/remixicon-DfzPQSMi.woff",
+    "src": "resources/fonts/remixicon.woff"
+  },
+  "resources/fonts/remixicon.woff2": {
+    "file": "assets/remixicon-BVOYbT3K.woff2",
+    "src": "resources/fonts/remixicon.woff2"
+  },
+  "resources/fonts/unicons.eot": {
+    "file": "assets/unicons-BzapHDjm.eot",
+    "src": "resources/fonts/unicons.eot"
+  },
+  "resources/fonts/unicons.svg": {
+    "file": "assets/unicons-Cz3ymATX.svg",
+    "src": "resources/fonts/unicons.svg"
+  },
+  "resources/fonts/unicons.ttf": {
+    "file": "assets/unicons-BpiNpJfS.ttf",
+    "src": "resources/fonts/unicons.ttf"
+  },
+  "resources/fonts/unicons.woff": {
+    "file": "assets/unicons-CtNLg4S6.woff",
+    "src": "resources/fonts/unicons.woff"
+  },
+  "resources/fonts/unicons.woff2": {
+    "file": "assets/unicons-oGV3eX_E.woff2",
+    "src": "resources/fonts/unicons.woff2"
+  },
+  "resources/js/hyper-config.js": {
+    "file": "assets/hyper-config-TNOAv8zQ.js",
+    "name": "hyper-config",
+    "src": "resources/js/hyper-config.js",
+    "isEntry": true
+  },
+  "resources/js/hyper-head.js": {
+    "file": "assets/hyper-head-BsETvxuy.js",
+    "name": "hyper-head",
+    "src": "resources/js/hyper-head.js",
+    "isEntry": true,
+    "imports": [
+      "_jquery-rTXOsbo7.js",
+      "_isObject-DB8w6JNV.js",
+      "_moment-zH0z38ay.js",
+      "__commonjsHelpers-BosuxZz1.js"
+    ]
+  },
+  "resources/js/hyper-layout.js": {
+    "file": "assets/hyper-layout-D442-rrv.js",
+    "name": "hyper-layout",
+    "src": "resources/js/hyper-layout.js",
+    "isEntry": true
+  },
+  "resources/js/hyper-main.js": {
+    "file": "assets/hyper-main-B6hySe2W.js",
+    "name": "hyper-main",
+    "src": "resources/js/hyper-main.js",
+    "isEntry": true,
+    "imports": [
+      "_jquery-rTXOsbo7.js",
+      "_bootstrap.min-Dymq8CO4.js",
+      "_select2-C4vtoEwQ.js",
+      "__commonjsHelpers-BosuxZz1.js"
+    ]
+  },
+  "resources/js/hyper-syntax.js": {
+    "file": "assets/hyper-syntax-DeasO0nL.js",
+    "name": "hyper-syntax",
+    "src": "resources/js/hyper-syntax.js",
+    "isEntry": true,
+    "imports": [
+      "__commonjsHelpers-BosuxZz1.js"
+    ]
+  },
+  "resources/js/pages/demo.apex-area.js": {
+    "file": "assets/demo.apex-area-Bp2xurr3.js",
+    "name": "demo.apex-area",
+    "src": "resources/js/pages/demo.apex-area.js",
+    "isEntry": true,
+    "imports": [
+      "_apexcharts.min-djLfbnMY.js",
+      "_moment-zH0z38ay.js",
+      "__commonjsHelpers-BosuxZz1.js"
+    ]
+  },
+  "resources/js/pages/demo.apex-bar.js": {
+    "file": "assets/demo.apex-bar-CTcLKMEy.js",
+    "name": "demo.apex-bar",
+    "src": "resources/js/pages/demo.apex-bar.js",
+    "isEntry": true,
+    "imports": [
+      "_apexcharts.min-djLfbnMY.js",
+      "__commonjsHelpers-BosuxZz1.js"
+    ]
+  },
+  "resources/js/pages/demo.apex-boxplot.js": {
+    "file": "assets/demo.apex-boxplot-D1kFJQXz.js",
+    "name": "demo.apex-boxplot",
+    "src": "resources/js/pages/demo.apex-boxplot.js",
+    "isEntry": true,
+    "imports": [
+      "_apexcharts.min-djLfbnMY.js",
+      "__commonjsHelpers-BosuxZz1.js"
+    ]
+  },
+  "resources/js/pages/demo.apex-bubble.js": {
+    "file": "assets/demo.apex-bubble-XcR-Jv2U.js",
+    "name": "demo.apex-bubble",
+    "src": "resources/js/pages/demo.apex-bubble.js",
+    "isEntry": true,
+    "imports": [
+      "_apexcharts.min-djLfbnMY.js",
+      "__commonjsHelpers-BosuxZz1.js"
+    ]
+  },
+  "resources/js/pages/demo.apex-candlestick.js": {
+    "file": "assets/demo.apex-candlestick-B_YQ8TBn.js",
+    "name": "demo.apex-candlestick",
+    "src": "resources/js/pages/demo.apex-candlestick.js",
+    "isEntry": true,
+    "imports": [
+      "_apexcharts.min-djLfbnMY.js",
+      "__commonjsHelpers-BosuxZz1.js"
+    ]
+  },
+  "resources/js/pages/demo.apex-column.js": {
+    "file": "assets/demo.apex-column-BhuARWpd.js",
+    "name": "demo.apex-column",
+    "src": "resources/js/pages/demo.apex-column.js",
+    "isEntry": true,
+    "imports": [
+      "_apexcharts.min-djLfbnMY.js",
+      "__commonjsHelpers-BosuxZz1.js"
+    ]
+  },
+  "resources/js/pages/demo.apex-heatmap.js": {
+    "file": "assets/demo.apex-heatmap-BsX8x0p1.js",
+    "name": "demo.apex-heatmap",
+    "src": "resources/js/pages/demo.apex-heatmap.js",
+    "isEntry": true,
+    "imports": [
+      "_apexcharts.min-djLfbnMY.js",
+      "__commonjsHelpers-BosuxZz1.js"
+    ]
+  },
+  "resources/js/pages/demo.apex-line.js": {
+    "file": "assets/demo.apex-line-Ctj6I9M6.js",
+    "name": "demo.apex-line",
+    "src": "resources/js/pages/demo.apex-line.js",
+    "isEntry": true,
+    "imports": [
+      "_apexcharts.min-djLfbnMY.js",
+      "__commonjsHelpers-BosuxZz1.js"
+    ]
+  },
+  "resources/js/pages/demo.apex-mixed.js": {
+    "file": "assets/demo.apex-mixed-Bej5RbFM.js",
+    "name": "demo.apex-mixed",
+    "src": "resources/js/pages/demo.apex-mixed.js",
+    "isEntry": true,
+    "imports": [
+      "_apexcharts.min-djLfbnMY.js",
+      "__commonjsHelpers-BosuxZz1.js"
+    ]
+  },
+  "resources/js/pages/demo.apex-pie.js": {
+    "file": "assets/demo.apex-pie-Bj3KEpkz.js",
+    "name": "demo.apex-pie",
+    "src": "resources/js/pages/demo.apex-pie.js",
+    "isEntry": true,
+    "imports": [
+      "_apexcharts.min-djLfbnMY.js",
+      "__commonjsHelpers-BosuxZz1.js"
+    ]
+  },
+  "resources/js/pages/demo.apex-polar-area.js": {
+    "file": "assets/demo.apex-polar-area-DfipZ1Sr.js",
+    "name": "demo.apex-polar-area",
+    "src": "resources/js/pages/demo.apex-polar-area.js",
+    "isEntry": true,
+    "imports": [
+      "_apexcharts.min-djLfbnMY.js",
+      "__commonjsHelpers-BosuxZz1.js"
+    ]
+  },
+  "resources/js/pages/demo.apex-radar.js": {
+    "file": "assets/demo.apex-radar-Dz3Tmc_T.js",
+    "name": "demo.apex-radar",
+    "src": "resources/js/pages/demo.apex-radar.js",
+    "isEntry": true,
+    "imports": [
+      "_apexcharts.min-djLfbnMY.js",
+      "__commonjsHelpers-BosuxZz1.js"
+    ]
+  },
+  "resources/js/pages/demo.apex-radialbar.js": {
+    "file": "assets/demo.apex-radialbar-CfqbCZMj.js",
+    "name": "demo.apex-radialbar",
+    "src": "resources/js/pages/demo.apex-radialbar.js",
+    "isEntry": true,
+    "imports": [
+      "_apexcharts.min-djLfbnMY.js",
+      "__commonjsHelpers-BosuxZz1.js"
+    ]
+  },
+  "resources/js/pages/demo.apex-scatter.js": {
+    "file": "assets/demo.apex-scatter-CeeWjZKm.js",
+    "name": "demo.apex-scatter",
+    "src": "resources/js/pages/demo.apex-scatter.js",
+    "isEntry": true,
+    "imports": [
+      "_apexcharts.min-djLfbnMY.js",
+      "__commonjsHelpers-BosuxZz1.js"
+    ]
+  },
+  "resources/js/pages/demo.apex-sparklines.js": {
+    "file": "assets/demo.apex-sparklines-BdFduZTo.js",
+    "name": "demo.apex-sparklines",
+    "src": "resources/js/pages/demo.apex-sparklines.js",
+    "isEntry": true,
+    "imports": [
+      "_apexcharts.min-djLfbnMY.js",
+      "__commonjsHelpers-BosuxZz1.js"
+    ]
+  },
+  "resources/js/pages/demo.apex-timeline.js": {
+    "file": "assets/demo.apex-timeline-Cv4nf46c.js",
+    "name": "demo.apex-timeline",
+    "src": "resources/js/pages/demo.apex-timeline.js",
+    "isEntry": true,
+    "imports": [
+      "_apexcharts.min-djLfbnMY.js",
+      "_moment-zH0z38ay.js",
+      "__commonjsHelpers-BosuxZz1.js"
+    ]
+  },
+  "resources/js/pages/demo.apex-treemap.js": {
+    "file": "assets/demo.apex-treemap-DDxCZOqI.js",
+    "name": "demo.apex-treemap",
+    "src": "resources/js/pages/demo.apex-treemap.js",
+    "isEntry": true,
+    "imports": [
+      "_apexcharts.min-djLfbnMY.js",
+      "__commonjsHelpers-BosuxZz1.js"
+    ]
+  },
+  "resources/js/pages/demo.britechart.js": {
+    "file": "assets/demo.britechart-OCaHGjBv.js",
+    "name": "demo.britechart",
+    "src": "resources/js/pages/demo.britechart.js",
+    "isEntry": true,
+    "imports": [
+      "__commonjsHelpers-BosuxZz1.js"
+    ]
+  },
+  "resources/js/pages/demo.calendar.js": {
+    "file": "assets/demo.calendar-zMsMOF-2.js",
+    "name": "demo.calendar",
+    "src": "resources/js/pages/demo.calendar.js",
+    "isEntry": true,
+    "imports": [
+      "_bootstrap.min-Dymq8CO4.js",
+      "__commonjsHelpers-BosuxZz1.js"
+    ]
+  },
+  "resources/js/pages/demo.chartjs-area.js": {
+    "file": "assets/demo.chartjs-area-CQ5FpePB.js",
+    "name": "demo.chartjs-area",
+    "src": "resources/js/pages/demo.chartjs-area.js",
+    "isEntry": true,
+    "imports": [
+      "_chart.min-BCLaYQXP.js",
+      "__commonjsHelpers-BosuxZz1.js"
+    ]
+  },
+  "resources/js/pages/demo.chartjs-bar.js": {
+    "file": "assets/demo.chartjs-bar--IYumSY3.js",
+    "name": "demo.chartjs-bar",
+    "src": "resources/js/pages/demo.chartjs-bar.js",
+    "isEntry": true,
+    "imports": [
+      "_chart.min-BCLaYQXP.js",
+      "__commonjsHelpers-BosuxZz1.js"
+    ]
+  },
+  "resources/js/pages/demo.chartjs-line.js": {
+    "file": "assets/demo.chartjs-line-PjMhIDUG.js",
+    "name": "demo.chartjs-line",
+    "src": "resources/js/pages/demo.chartjs-line.js",
+    "isEntry": true,
+    "imports": [
+      "_chart.min-BCLaYQXP.js",
+      "__commonjsHelpers-BosuxZz1.js"
+    ]
+  },
+  "resources/js/pages/demo.chartjs-other.js": {
+    "file": "assets/demo.chartjs-other-ChLbNgT0.js",
+    "name": "demo.chartjs-other",
+    "src": "resources/js/pages/demo.chartjs-other.js",
+    "isEntry": true,
+    "imports": [
+      "_chart.min-BCLaYQXP.js",
+      "__commonjsHelpers-BosuxZz1.js"
+    ]
+  },
+  "resources/js/pages/demo.checkout.js": {
+    "file": "assets/demo.checkout-DKgpv7Np.js",
+    "name": "demo.checkout",
+    "src": "resources/js/pages/demo.checkout.js",
+    "isEntry": true,
+    "imports": [
+      "_select2.min-DHrdhkqh.js",
+      "_jquery.mask-n6opkwya.js",
+      "_jquery-rTXOsbo7.js",
+      "__commonjsHelpers-BosuxZz1.js"
+    ]
+  },
+  "resources/js/pages/demo.crm-dashboard.js": {
+    "file": "assets/demo.crm-dashboard-lz4aiJHN.js",
+    "name": "demo.crm-dashboard",
+    "src": "resources/js/pages/demo.crm-dashboard.js",
+    "isEntry": true,
+    "imports": [
+      "_apexcharts.common-CHTSBbUw.js",
+      "__commonjsHelpers-BosuxZz1.js"
+    ]
+  },
+  "resources/js/pages/demo.crm-management.js": {
+    "file": "assets/demo.crm-management-CRyjps-m.js",
+    "name": "demo.crm-management",
+    "src": "resources/js/pages/demo.crm-management.js",
+    "isEntry": true,
+    "imports": [
+      "_daterangepicker-kJNY4xn2.js",
+      "_apexcharts.common-CHTSBbUw.js",
+      "_jquery-rTXOsbo7.js",
+      "__commonjsHelpers-BosuxZz1.js",
+      "_moment-zH0z38ay.js"
+    ]
+  },
+  "resources/js/pages/demo.crm-project.js": {
+    "file": "assets/demo.crm-project-Dhnzb_1h.js",
+    "name": "demo.crm-project",
+    "src": "resources/js/pages/demo.crm-project.js",
+    "isEntry": true,
+    "imports": [
+      "_apexcharts.common-CHTSBbUw.js",
+      "_select2.min-DHrdhkqh.js",
+      "__commonjsHelpers-BosuxZz1.js",
+      "_jquery-rTXOsbo7.js"
+    ]
+  },
+  "resources/js/pages/demo.customers.js": {
+    "file": "assets/demo.customers-CyywRxWx.js",
+    "name": "demo.customers",
+    "src": "resources/js/pages/demo.customers.js",
+    "isEntry": true,
+    "imports": [
+      "_dataTables.bootstrap5.min-DTEHOskj.js",
+      "__commonjsHelpers-BosuxZz1.js",
+      "_jquery-rTXOsbo7.js"
+    ]
+  },
+  "resources/js/pages/demo.dashboard-analytics.js": {
+    "file": "assets/demo.dashboard-analytics-D8vn_2Fr.js",
+    "name": "demo.dashboard-analytics",
+    "src": "resources/js/pages/demo.dashboard-analytics.js",
+    "isEntry": true,
+    "imports": [
+      "_daterangepicker-kJNY4xn2.js",
+      "_apexcharts.common-CHTSBbUw.js",
+      "_world-DIGAk8hl.js",
+      "__commonjsHelpers-BosuxZz1.js",
+      "_jquery-rTXOsbo7.js",
+      "_moment-zH0z38ay.js"
+    ]
+  },
+  "resources/js/pages/demo.dashboard-projects.js": {
+    "file": "assets/demo.dashboard-projects-lZ1LmD6n.js",
+    "name": "demo.dashboard-projects",
+    "src": "resources/js/pages/demo.dashboard-projects.js",
+    "isEntry": true,
+    "imports": [
+      "_bootstrap-datepicker.min-D6teom5p.js",
+      "_chart.min-BCLaYQXP.js",
+      "_jquery-rTXOsbo7.js",
+      "__commonjsHelpers-BosuxZz1.js"
+    ]
+  },
+  "resources/js/pages/demo.dashboard-wallet.js": {
+    "file": "assets/demo.dashboard-wallet-fHqqqoCe.js",
+    "name": "demo.dashboard-wallet",
+    "src": "resources/js/pages/demo.dashboard-wallet.js",
+    "isEntry": true,
+    "imports": [
+      "_apexcharts.common-CHTSBbUw.js",
+      "__commonjsHelpers-BosuxZz1.js"
+    ]
+  },
+  "resources/js/pages/demo.dashboard.js": {
+    "file": "assets/demo.dashboard-BXQ1IO81.js",
+    "name": "demo.dashboard",
+    "src": "resources/js/pages/demo.dashboard.js",
+    "isEntry": true,
+    "imports": [
+      "_daterangepicker-kJNY4xn2.js",
+      "_apexcharts.common-CHTSBbUw.js",
+      "_world-DIGAk8hl.js",
+      "__commonjsHelpers-BosuxZz1.js",
+      "_jquery-rTXOsbo7.js",
+      "_moment-zH0z38ay.js"
+    ]
+  },
+  "resources/js/pages/demo.datatable-init.js": {
+    "file": "assets/demo.datatable-init-N8pBsm6v.js",
+    "name": "demo.datatable-init",
+    "src": "resources/js/pages/demo.datatable-init.js",
+    "isEntry": true,
+    "imports": [
+      "_dataTables.bootstrap5.min-DTEHOskj.js",
+      "__commonjsHelpers-BosuxZz1.js",
+      "_jquery-rTXOsbo7.js"
+    ]
+  },
+  "resources/js/pages/demo.form-advanced.js": {
+    "file": "assets/demo.form-advanced-oAyObas9.js",
+    "name": "demo.form-advanced",
+    "src": "resources/js/pages/demo.form-advanced.js",
+    "isEntry": true,
+    "imports": [
+      "_select2-C4vtoEwQ.js",
+      "__commonjsHelpers-BosuxZz1.js",
+      "_jquery-rTXOsbo7.js",
+      "_moment-zH0z38ay.js",
+      "_daterangepicker-kJNY4xn2.js",
+      "_bootstrap-datepicker.min-D6teom5p.js",
+      "_jquery.mask-n6opkwya.js"
+    ]
+  },
+  "resources/js/pages/demo.form-wizard.js": {
+    "file": "assets/demo.form-wizard-CagI2irW.js",
+    "name": "demo.form-wizard",
+    "src": "resources/js/pages/demo.form-wizard.js",
+    "isEntry": true
+  },
+  "resources/js/pages/demo.google-maps.js": {
+    "file": "assets/demo.google-maps-CKFMoUaQ.js",
+    "name": "demo.google-maps",
+    "src": "resources/js/pages/demo.google-maps.js",
+    "isEntry": true,
+    "imports": [
+      "__commonjsHelpers-BosuxZz1.js"
+    ]
+  },
+  "resources/js/pages/demo.inbox.js": {
+    "file": "assets/demo.inbox-CIibEMB-.js",
+    "name": "demo.inbox",
+    "src": "resources/js/pages/demo.inbox.js",
+    "isEntry": true,
+    "imports": [
+      "_simplemde.min-Cfma5WSY.js",
+      "__commonjsHelpers-BosuxZz1.js",
+      "__commonjs-dynamic-modules-TDtrdbi3.js"
+    ]
+  },
+  "resources/js/pages/demo.jstree.js": {
+    "file": "assets/demo.jstree-ooCBteoa.js",
+    "name": "demo.jstree",
+    "src": "resources/js/pages/demo.jstree.js",
+    "isEntry": true,
+    "imports": [
+      "_jquery-rTXOsbo7.js",
+      "__commonjsHelpers-BosuxZz1.js"
+    ]
+  },
+  "resources/js/pages/demo.lucideicons.js": {
+    "file": "assets/demo.lucideicons-CngMwaLp.js",
+    "name": "demo.lucideicons",
+    "src": "resources/js/pages/demo.lucideicons.js",
+    "isEntry": true
+  },
+  "resources/js/pages/demo.materialdesignicons.js": {
+    "file": "assets/demo.materialdesignicons-CeWThtxF.js",
+    "name": "demo.materialdesignicons",
+    "src": "resources/js/pages/demo.materialdesignicons.js",
+    "isEntry": true
+  },
+  "resources/js/pages/demo.products.js": {
+    "file": "assets/demo.products-xOes3wBn.js",
+    "name": "demo.products",
+    "src": "resources/js/pages/demo.products.js",
+    "isEntry": true,
+    "imports": [
+      "_bootstrap.min-Dymq8CO4.js",
+      "_dataTables.bootstrap5.min-DTEHOskj.js",
+      "__commonjsHelpers-BosuxZz1.js",
+      "_jquery-rTXOsbo7.js"
+    ]
+  },
+  "resources/js/pages/demo.profile.js": {
+    "file": "assets/demo.profile-Dh_omoU5.js",
+    "name": "demo.profile",
+    "src": "resources/js/pages/demo.profile.js",
+    "isEntry": true,
+    "imports": [
+      "_chart.min-BCLaYQXP.js",
+      "__commonjsHelpers-BosuxZz1.js"
+    ]
+  },
+  "resources/js/pages/demo.project-detail.js": {
+    "file": "assets/demo.project-detail-Ba6u_nGD.js",
+    "name": "demo.project-detail",
+    "src": "resources/js/pages/demo.project-detail.js",
+    "isEntry": true,
+    "imports": [
+      "_chart.min-BCLaYQXP.js",
+      "__commonjsHelpers-BosuxZz1.js"
+    ]
+  },
+  "resources/js/pages/demo.project-gantt.js": {
+    "file": "assets/demo.project-gantt-BMwWRXLr.js",
+    "name": "demo.project-gantt",
+    "src": "resources/js/pages/demo.project-gantt.js",
+    "isEntry": true,
+    "css": [
+      "assets/demo-CxRdHt9h.css"
+    ]
+  },
+  "resources/js/pages/demo.quilljs.js": {
+    "file": "assets/demo.quilljs-LK0GsJ47.js",
+    "name": "demo.quilljs",
+    "src": "resources/js/pages/demo.quilljs.js",
+    "isEntry": true,
+    "imports": [
+      "_quill-BaE4VG53.js",
+      "__commonjsHelpers-BosuxZz1.js",
+      "_isObject-DB8w6JNV.js"
+    ]
+  },
+  "resources/js/pages/demo.remixicons.js": {
+    "file": "assets/demo.remixicons-B0iFjvTm.js",
+    "name": "demo.remixicons",
+    "src": "resources/js/pages/demo.remixicons.js",
+    "isEntry": true
+  },
+  "resources/js/pages/demo.sellers.js": {
+    "file": "assets/demo.sellers-CQm8b4A8.js",
+    "name": "demo.sellers",
+    "src": "resources/js/pages/demo.sellers.js",
+    "isEntry": true,
+    "imports": [
+      "_bootstrap.min-Dymq8CO4.js",
+      "_apexcharts.common-CHTSBbUw.js",
+      "_apexcharts.min-djLfbnMY.js",
+      "_dataTables.bootstrap5.min-DTEHOskj.js",
+      "__commonjsHelpers-BosuxZz1.js",
+      "_jquery-rTXOsbo7.js"
+    ]
+  },
+  "resources/js/pages/demo.simplemde.js": {
+    "file": "assets/demo.simplemde-BDZ7Zjgu.js",
+    "name": "demo.simplemde",
+    "src": "resources/js/pages/demo.simplemde.js",
+    "isEntry": true,
+    "imports": [
+      "_simplemde.min-Cfma5WSY.js",
+      "__commonjsHelpers-BosuxZz1.js",
+      "__commonjs-dynamic-modules-TDtrdbi3.js"
+    ]
+  },
+  "resources/js/pages/demo.sparkline.js": {
+    "file": "assets/demo.sparkline-D-LsITwD.js",
+    "name": "demo.sparkline",
+    "src": "resources/js/pages/demo.sparkline.js",
+    "isEntry": true
+  },
+  "resources/js/pages/demo.tasks.js": {
+    "file": "assets/demo.tasks-CikA20-g.js",
+    "name": "demo.tasks",
+    "src": "resources/js/pages/demo.tasks.js",
+    "isEntry": true,
+    "imports": [
+      "_quill-BaE4VG53.js",
+      "__commonjsHelpers-BosuxZz1.js",
+      "_isObject-DB8w6JNV.js"
+    ]
+  },
+  "resources/js/pages/demo.toastr.js": {
+    "file": "assets/demo.toastr-DyVmdTpN.js",
+    "name": "demo.toastr",
+    "src": "resources/js/pages/demo.toastr.js",
+    "isEntry": true
+  },
+  "resources/js/pages/demo.vector-maps.js": {
+    "file": "assets/demo.vector-maps-Oq4Xb6Bf.js",
+    "name": "demo.vector-maps",
+    "src": "resources/js/pages/demo.vector-maps.js",
+    "isEntry": true,
+    "imports": [
+      "_world-DIGAk8hl.js"
+    ]
+  },
+  "resources/js/pages/demo.widgets.js": {
+    "file": "assets/demo.widgets-DwSVQkjc.js",
+    "name": "demo.widgets",
+    "src": "resources/js/pages/demo.widgets.js",
+    "isEntry": true,
+    "imports": [
+      "_apexcharts.common-CHTSBbUw.js",
+      "_daterangepicker-kJNY4xn2.js",
+      "__commonjsHelpers-BosuxZz1.js",
+      "_jquery-rTXOsbo7.js",
+      "_moment-zH0z38ay.js"
+    ]
+  },
+  "resources/js/ui/component.chat.js": {
+    "file": "assets/component.chat-5hqbuwyk.js",
+    "name": "component.chat",
+    "src": "resources/js/ui/component.chat.js",
+    "isEntry": true
+  },
+  "resources/js/ui/component.dragula.js": {
+    "file": "assets/component.dragula-vqNa3NDx.js",
+    "name": "component.dragula",
+    "src": "resources/js/ui/component.dragula.js",
+    "isEntry": true,
+    "imports": [
+      "__commonjsHelpers-BosuxZz1.js",
+      "__commonjs-dynamic-modules-TDtrdbi3.js"
+    ]
+  },
+  "resources/js/ui/component.fileupload.js": {
+    "file": "assets/component.fileupload-CwOz1LJE.js",
+    "name": "component.fileupload",
+    "src": "resources/js/ui/component.fileupload.js",
+    "isEntry": true,
+    "imports": [
+      "_select2-C4vtoEwQ.js",
+      "_bootstrap-datepicker.min-D6teom5p.js",
+      "__commonjsHelpers-BosuxZz1.js",
+      "_jquery-rTXOsbo7.js"
+    ]
+  },
+  "resources/js/ui/component.range-slider.js": {
+    "file": "assets/component.range-slider-BB5KT-Me.js",
+    "name": "component.range-slider",
+    "src": "resources/js/ui/component.range-slider.js",
+    "isEntry": true,
+    "imports": [
+      "_jquery-rTXOsbo7.js",
+      "__commonjsHelpers-BosuxZz1.js"
+    ]
+  },
+  "resources/js/ui/component.rating.js": {
+    "file": "assets/component.rating-C39kPdNi.js",
+    "name": "component.rating",
+    "src": "resources/js/ui/component.rating.js",
+    "isEntry": true
+  },
+  "resources/js/ui/component.todo.js": {
+    "file": "assets/component.todo-iv0iSRcB.js",
+    "name": "component.todo",
+    "src": "resources/js/ui/component.todo.js",
+    "isEntry": true
+  },
+  "resources/scss/app-modern.scss": {
+    "file": "assets/app-modern-Be5tA7TX.css",
+    "src": "resources/scss/app-modern.scss",
+    "isEntry": true
+  },
+  "resources/scss/icons.scss": {
+    "file": "assets/icons-DAQKMB1-.css",
+    "src": "resources/scss/icons.scss",
+    "isEntry": true
+  }
+}
