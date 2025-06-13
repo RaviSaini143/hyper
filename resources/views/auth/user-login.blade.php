@@ -27,7 +27,7 @@
 
                         <!-- Logo -->
                         <div class="card-header py-4 text-center bg-primary">
-                            <a href="{{ route('any', 'index') }}">
+                            <a href="#">
                                 <span><img src="/images/logo.png" alt="logo" height="22"></span>
                             </a>
                         </div>
@@ -40,7 +40,8 @@
                                 </p>
                             </div>
 
-                            <form method="POST" action="{{ route('login.store') }}">
+                            <!--<form method="POST" action="{{ route('login.store') }}">-->
+							 <form method="POST" action="{{ route('login.user.verify.otp') }}" id="login-form">
                                 @csrf
 
                                 @if (sizeof($errors) > 0)
@@ -56,7 +57,7 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <a href="{{ route('second', [ 'auth' , 'recoverpw']) }}" class="text-muted float-end"><small>Forgot your
+                                    <a href="{{ route('password.request.user') }}" class="text-muted float-end"><small>Forgot your
                                             password?</small></a>
                                     <label for="password" class="form-label">Password</label>
                                     <div class="input-group input-group-merge">
@@ -83,6 +84,34 @@
                         </div> <!-- end card-body -->
                     </div>
                     <!-- end card -->
+<!-- Modal -->
+<div class="modal fade" id="myForm" tabindex="-1" aria-labelledby="myFormLabel" aria-hidden="true"
+     data-bs-backdrop="static" data-bs-keyboard="false">
+
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form  id="otp-form" method="post">
+        @csrf
+        <div class="modal-header">
+          <h5 class="modal-title" id="myFormLabel">Enter OTP</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+          <input type="hidden" name="email" id="otp-email" value="">
+          <input type="hidden" name="password" id="otp-password" value=""> <!-- Add this -->
+          <label for="otp">OTP Code</label>
+          <input type="text" class="form-control" name="otp_code" id="otp" placeholder="Enter OTP" required>
+        </div>
+
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Verify OTP</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
 
                     <div class="row mt-3">
                         <div class="col-12 text-center">
@@ -105,7 +134,105 @@
 
     @include('layouts.shared/footer-2')
     @include('layouts.shared/footer-scripts')
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+<script>
+$(document).ready(function () {
+    // Handle login form
+    $('#login-form').on('submit', function (e) {
+    e.preventDefault();
+
+    Swal.fire({
+        text: 'Sending OTP...',
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        showConfirmButton: false,
+        didOpen: () => {
+            Swal.showLoading();
+        }
+    });
+
+    let email = $('#emailaddress').val();
+    let password = $('#password').val(); // Get password input
+
+    $.ajax({
+        url: $(this).attr('action'),
+        method: 'POST',
+        data: $(this).serialize(),
+        headers: {
+            'X-CSRF-TOKEN': $('input[name="_token"]').val()
+        },
+        success: function (response) {
+            $('#otp-email').val(email);
+            $('#otp-password').val(password); // Set password to hidden field in modal
+            $('#login-form button[type=submit]').prop('disabled', true);
+            Swal.close();
+
+            // Show OTP modal
+            let modal = new bootstrap.Modal(document.getElementById('myForm'));
+            modal.show();
+        },
+        error: function (xhr) {
+            let message = 'Something went wrong.';
+            if (xhr.responseJSON && xhr.responseJSON.message) {
+                message = xhr.responseJSON.message;
+            }
+
+            Swal.fire({
+                icon: 'error',
+                title: 'Login Failed',
+                text: message
+            });
+        }
+    });
+});
+
+
+    // Handle OTP form
+    $('#otp-form').on('submit', function (e) {
+        e.preventDefault();
+
+        $.ajax({
+            url: "{{ route('otp.user.verify.code') }}", // Your route
+            method: 'POST',
+            data: $(this).serialize(),
+            headers: {
+                'X-CSRF-TOKEN': $('input[name="_token"]').val()
+            },
+            success: function (res) {
+				
+                Swal.fire({
+					icon: 'success',
+				title: 'OTP Verified',
+				text: 'Redirecting to your dashboard...',
+				timer: 2000,
+				timerProgressBar: true, // Optional: adds a progress bar
+				allowOutsideClick: false,
+				allowEscapeKey: false
+                }).then(() => {
+					 const userDashboardUrl = "{{ route('user.dashboard') }}";
+                window.location.href = userDashboardUrl;
+
+                });
+            },
+            error: function (err) {
+                let message = 'Invalid or expired OTP.';
+                if (err.responseJSON && err.responseJSON.message) {
+                    message = err.responseJSON.message;
+                }
+
+                Swal.fire({
+                    icon: 'error',
+                    title: 'OTP Error',
+                    text: message
+                });
+            }
+        });
+    });
+});
+</script>
 </body>
 
 </html>

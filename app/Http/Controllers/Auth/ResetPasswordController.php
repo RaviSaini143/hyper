@@ -10,11 +10,18 @@ use App\Mail\UserResetPassword;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
+use App\Services\TranslationService;
 class ResetPasswordController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+	protected $translationService;
+
+    public function __construct(TranslationService $translationService)
+    {
+        $this->translationService = $translationService;
+    }
     public function index()
     {
         //
@@ -25,7 +32,8 @@ class ResetPasswordController extends Controller
      */
     public function create()
     {
-        return view('auth.reset-password');
+		$locales = $this->translationService->getAvailableLocales();
+        return view('auth.reset-password',compact('locales'));
     }
 
     /**

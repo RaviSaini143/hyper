@@ -4,12 +4,14 @@ namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable; // Note this import
 use Illuminate\Notifications\Notifiable;
+	use App\Notifications\CustomResetPassword;
 
 class AddUser extends Authenticatable
 {
     use Notifiable;
 
     protected $table = 'add_users';
+
 
     // Add your fillable, hidden, casts etc.
 
@@ -32,4 +34,10 @@ class AddUser extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+public function sendPasswordResetNotification($token)
+{
+    $this->notify(new CustomResetPassword($token));
+}
+
 }

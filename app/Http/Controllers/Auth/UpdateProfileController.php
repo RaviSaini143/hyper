@@ -8,8 +8,15 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ProfileUpdate;
+use App\Services\TranslationService;
 class UpdateProfileController extends Controller
 {
+	protected $translationService;
+
+    public function __construct(TranslationService $translationService)
+    {
+        $this->translationService = $translationService;
+    }
     /**
      * Display a listing of the resource.
      */
@@ -24,8 +31,9 @@ class UpdateProfileController extends Controller
      */
     public function create()
     {
+	   $locales = $this->translationService->getAvailableLocales();
        $authUser = Auth::user();
-       return view('auth.profile',compact('authUser'));
+       return view('auth.profile',compact('authUser','locales'));
     }
 
     /**

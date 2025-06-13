@@ -15,7 +15,7 @@ class PasswordResetLinkController extends Controller
      */
     public function create()
     {
-        return view('auth.forgot-password');
+        return view('auth.recoverpw');
     }
 
     /**
@@ -38,10 +38,49 @@ class PasswordResetLinkController extends Controller
         $status = Password::sendResetLink(
             $request->only('email')
         );
+	 if ($status === Password::RESET_LINK_SENT) {
+			session()->flash('status', 'success');
+		} else {
+			session()->flash('status', 'error');
+		}
 
-        return $status == Password::RESET_LINK_SENT
-                    ? back()->with('status', __($status))
-                    : back()->withInput($request->only('email'))
-                            ->withErrors(['email' => __($status)]);
+    return back();
+	
+        //return $status == Password::RESET_LINK_SENT
+                  //  ? back()->with('status', __($status))
+                   // : back()->withInput($request->only('email'))
+                         //   ->withErrors(['email' => __($status)]);
+    }
+	
+	 public function createUser()
+    {
+        return view('UserDashboard.recoverpw');
+    }
+	public function storeUser(Request $request)
+    {
+		
+        $request->validate([
+            'email' => 'required|email',
+        ]);
+
+        // We will send the password reset link to this user. Once we have attempted
+        // to send the link, we will examine the response then see the message we
+        // need to show to the user. Finally, we'll send out a proper response.
+        $status = Password::broker('add_users')->sendResetLink(
+			$request->only('email')
+		);
+
+	 if ($status === Password::RESET_LINK_SENT) {
+			session()->flash('status', 'success');
+		} else {
+			session()->flash('status', 'error');
+		}
+
+    return back();
+	
+        //return $status == Password::RESET_LINK_SENT
+                  //  ? back()->with('status', __($status))
+                   // : back()->withInput($request->only('email'))
+                         //   ->withErrors(['email' => __($status)]);
     }
 }

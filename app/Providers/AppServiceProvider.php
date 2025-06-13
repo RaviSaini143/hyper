@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-
+use App\Services\TranslationService;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -11,7 +11,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        // Bind the TranslationService singleton
+        $this->app->singleton(TranslationService::class, function ($app) {
+            return new TranslationService();
+        });
     }
 
     /**

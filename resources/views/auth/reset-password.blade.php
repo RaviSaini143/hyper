@@ -11,7 +11,7 @@
 
                         <!-- Logo -->
                         <div class="card-header py-4 text-center bg-primary">
-                            <a href="{{ route('any', 'index') }}">
+                            <a href="{{ url('admin/dashboard') }}">
                                 <span><img src="/images/logo.png" alt="logo" height="22"></span>
                             </a>
                         </div>
@@ -25,12 +25,12 @@
 
                                 @csrf
                                 <div class="mb-3">
-                                    <label for="emailaddress" class="form-label">Email address</label>
+                                    <label for="emailaddress" class="form-label">{{ __ ('Email address') }}</label>
                                     <input class="form-control" type="email" name="email" id="emailaddress"
-                                       placeholder="Enter your email">
+                                       placeholder="{{ __ ('Enter your email') }}">
                                 </div>
                                 <div class="mb-3 mb-0 text-center">
-                                    <button class="btn btn-primary" type="submit"> Reset Password</button>
+                                    <button class="btn btn-primary" type="submit"> {{ __ ('Reset Password') }}</button>
                                 </div>
 
                             </form>

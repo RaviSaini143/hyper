@@ -11,11 +11,17 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-       $middleware->alias([
+        // Ensure session middleware is included
+        /* $middleware->use([
+            \Illuminate\Session\Middleware\StartSession::class,
+        ]); */
+
+        // Register middleware aliases
+        $middleware->alias([
             'guest.add_user' => \App\Http\Middleware\RedirectIfAuthenticatedAddUser::class,
             'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
+            'set.locale' => \App\Http\Middleware\SetLocale::class,
         ]);
-
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

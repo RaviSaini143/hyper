@@ -329,5 +329,8 @@
     "Lock Screen": "Lock Screen",
     "Support": "Support",
     "Reset Password": "Reset Password",
-    "Logout": "Logout"
+    "Logout": "Logout",
+	"Sub Users": "Sub Users",
+	"User Dashboard": "User Dashboard",
+	"Sub User Dashboard": "Sub User Dashboard"
 }

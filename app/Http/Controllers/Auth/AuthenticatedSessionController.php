@@ -8,9 +8,14 @@ use App\Http\Requests\Auth\LoginUserRequest;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use App\Models\AddUser;
+use App\Models\AddSubUser;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Mail\SendOtpMail;
+use App\Mail\SendUserOtpMail;
+use Illuminate\Support\Facades\Mail;
+
 class AuthenticatedSessionController extends Controller
 {
     /**
@@ -67,20 +72,29 @@ class AuthenticatedSessionController extends Controller
         }
         public function storeuser(LoginUserRequest $request)
     {
-        $credentials = $request->only('email', 'password');
-        $addUser = AddUser::where('email', $credentials['email'])->first();
+	
+			$credentials = $request->only('email', 'password');
+			$addUser = AddUser::where('email', $credentials['email'])->first();
+			
+			
+				
+			if ($addUser && Hash::check($credentials['password'], $addUser->password)) {
+				if ($addUser->status == 1) {
+					return back()->withErrors([
+						'email' => 'Permission denied. Your account is inactive. Please contact for your admin.',
+					]);
+				}
 
-        if ($addUser && Hash::check($credentials['password'], $addUser->password)) {
-            Auth::guard('add_user')->login($addUser);
-            $request->session()->regenerate();
+				Auth::guard('add_user')->login($addUser);
+				$request->session()->regenerate();
 
-            if ($addUser->user_type === 'user') {
-                return redirect()->route('user.dashboard');
-            } else {
-                return redirect()->back();
-            }
-        }
+				if (in_array($addUser->user_type, ['user', 'subuser'])) {
+					return redirect()->route('user.dashboard');
+				} else {
+					return redirect()->back();
+				}
 
+			}
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
         ]);
@@ -100,4 +114,94 @@ class AuthenticatedSessionController extends Controller
 
                 return redirect()->route('login.user');
     }
+	
+	public function verifyOtp(Request $request)
+	{
+		$user = User::where('email', $request->email)->first();
+		if (!$user) {
+			return response()->json([
+				'status' => 'error',
+				'message' => 'Please enter valid credentials...'
+			], 422);
+		}
+		$otp = rand(100000, 999999);
+		$user->otp_code = $otp;
+		$user->save();
+		Mail::to($user->email)->send(new SendOtpMail($user->name, $otp));
+		return response()->json(['success' => 'OTP sent to your email.']);
+	}
+	public function verifyOtpCode(Request $request){
+		 $request->validate([
+			'otp_code' => 'required|string'
+		]);
+		$user = User::where('otp_code','=',$request->otp_code)->first();
+		if (!$user) {
+			return response()->json([
+				'status' => 'error',
+				'message' => 'Invalid OTP code.'
+			], 422);
+		}
+		Auth::login($user);
+		$user->otp_code = null;
+		$user->save();
+		$request->session()->regenerate();
+		return response()->json(['success' => 'Please enter the OTP sent to your email.']);
+		//return redirect()->intended(RouteServiceProvider::HOME);
+	}
+	
+	public function verifyOtpUser(Request $request)
+	{
+		$user = AddUser::where('email', $request->email)->first();
+		if (!$user || !Hash::check($request->password, $user->password)) {
+			return response()->json([
+				'status' => 'error',
+				'message' => 'Please enter valid credentials...'
+			], 422);
+		}
+        if ($user->status == 1) {
+			
+			return response()->json([
+				'status' => 'error',
+				'message' => 'Permission denied. Your account is inactive. Please contact your admin.'
+			], 422);
+		}
+		$otp = rand(100000, 999999);
+		$user->otp_code = $otp;
+		$user->save();
+		Mail::to($user->email)->send(new SendUserOtpMail($user->name, $otp));
+		return response()->json(['success' => 'OTP sent to your email.']);
+	}
+	
+	public function verifyOtpCodeUser(Request $request)
+	{
+		
+		$request->validate([
+			'otp_code' => 'required|string',
+			'email' => 'required|email',
+			'password' => 'required|string',
+		]);
+
+		$user = AddUser::where('otp_code', $request->otp_code)
+					   ->first();
+
+		if (!$user) {
+			return response()->json([
+				'status' => 'error',
+				'message' => 'Invalid OTP code.'
+			], 422);
+		}
+		Auth::guard('add_user')->login($user);
+
+		$user->otp_code = null;
+		$user->save();
+
+		$request->session()->regenerate();
+
+		return response()->json([
+			'status' => 'success',
+			'redirect' => route('user.dashboard')
+		]);
+	}
+
+
 }

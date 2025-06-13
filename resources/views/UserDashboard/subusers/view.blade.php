@@ -1,21 +1,17 @@
-@extends('layouts.detached', ['title' => 'Products'])
+@extends('layouts.user.detached', ['title' => 'Dashboard'])
 
 @section('css')
-@vite([
-    'node_modules/datatables.net-bs5/css/dataTables.bootstrap5.min.css',
-    'node_modules/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css',
-    ])
+    @vite(['node_modules/daterangepicker/daterangepicker.css', 'node_modules/jsvectormap/dist/jsvectormap.min.css'])
 @endsection
 
 @section('content')
-@include('layouts.shared/page-title',['page_title' => 'Products','sub_title' => 'eCommerce'])
 <div class="row">
     <div class="col-12">
         <div class="card">
             <div class="card-body">
                 <div class="row mb-2">
                     <div class="col-sm-5">
-                        <a href="{{ route('user.add') }}" class="btn btn-danger mb-2"><i class="mdi mdi-plus-circle me-2"></i> {{ __('Add User') }}</a>
+                        <a href="{{route('subuser.add')}}" class="btn btn-danger mb-2"><i class="mdi mdi-plus-circle me-2"></i> {{ __('Add Sub User') }}</a>
                     </div>
                     <div class="col-sm-7">
                         <div class="text-sm-end">
@@ -37,36 +33,20 @@
                                     </div>
                                 </th>
                                 <th>{{ __('Id') }}</th>
-                                <th>{{ __('First Name') }}</th>
-                                <th>{{ __('Last Name') }}</th>
                                 <th>{{ __('Email') }}</th>
-                                <th>{{ __('Phone') }}</th>
-                                <th>{{ __('Address') }}</th>
-                                <th>{{ __('Ip Address') }}</th>
-                                <th>{{ __('City') }}</th>
-                                <th>{{ __('State') }}</th>
-                                <th>{{ __('Zip Code') }}</th>
-                                <th>{{ __('Status') }}</th>
+								 <th>{{ __('Status') }}</th>
                                 <th>{{ __('Type') }}</th>
                                 <th style="width: 85px;">{{ __('Action') }}</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($users as $user)
+                            @foreach($subusers as $user)
                             <tr>
                                 <td></td>
                                 <td>{{ $user->id }}</td>
-                                <td>{{ $user->firstname }}</td>
-                                <td>{{ $user->lastname }}</td>
                                 <td>{{ $user->email }}</td>
-                                <td>{{ $user->phone }}</td>
-                                <td>{{ $user->address }}</td>
-                                <td>{{ $user->ipaddress }}</td>
-                                <td>{{ $user->city }}</td>
-                                <td>{{ $user->state }}</td>
-                                <td>{{ $user->zipcode }}</td>
                                 <td>
-                                    <form action="{{ route('users.toggleStatus', $user->id) }}" method="POST">
+                                    <form action="{{ route('subuser.toggleStatus', $user->id) }}" method="POST">
                                         @csrf
                                         @if($user->status == 0)
                                             <button type="submit" class="btn btn-success btn-sm">

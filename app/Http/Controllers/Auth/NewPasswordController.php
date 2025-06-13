@@ -18,7 +18,7 @@ class NewPasswordController extends Controller
      */
     public function create(Request $request)
     {
-        return view('auth.forgot-password', ['request' => $request]);
+        return view('auth.forgetpw', ['request' => $request]);
     }
 
     /**
@@ -60,4 +60,35 @@ class NewPasswordController extends Controller
                     : back()->withInput($request->only('email'))
                             ->withErrors(['email' => __($status)]);
     }
+	
+	public function createUser(Request $request)
+    {
+        return view('UserDashboard.forgetpw', ['request' => $request]);
+    }
+	public function storeUser(Request $request)
+		{
+			$request->validate([
+				'token' => 'required',
+				'email' => 'required|email',
+				'password' => 'required|string|confirmed|min:8',
+			]);
+
+			$status = Password::broker('add_users')->reset(
+				$request->only('email', 'password', 'password_confirmation', 'token'),
+				function ($user) use ($request) {
+					$user->forceFill([
+						'password' => Hash::make($request->password),
+						'remember_token' => Str::random(60),
+					])->save();
+
+					event(new PasswordReset($user));
+				}
+			);
+
+			return $status == Password::PASSWORD_RESET
+				? redirect()->route('login.user')->with('status', __($status))
+				: back()->withInput($request->only('email'))
+						->withErrors(['email' => __($status)]);
+		}
+
 }
