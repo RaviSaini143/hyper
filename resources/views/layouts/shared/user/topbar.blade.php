@@ -395,15 +395,27 @@
                     </form>
                     </a>-->
                     <!-- Logout Button -->
-                      <a href="#" class="dropdown-item" id="logout-link">
+                     @if(session('impersonator_id'))
+    <a href="{{ route('admin.stop.impersonation') }}" class="btn btn-danger">
+      
+		 <i class="mdi mdi-logout me-1"></i>
+                    <span>{{ __('  Return to Admin Panel') }}</span>
+                    </a>
+    </a>
+
+
+	@else
+		 <a href="#" class="dropdown-item" id="logout-link">
                     <i class="mdi mdi-logout me-1"></i>
                     <span>{{ __('Logout') }}</span>
                     </a>
+@endif
 
   <!-- Hidden Logout Form -->
                     <form id="logout-form" action="{{ route('logout.user') }}" method="POST" style="display: none;">
                     @csrf
                     </form>
+
 
 
 

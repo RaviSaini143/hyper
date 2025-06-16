@@ -5,6 +5,7 @@ use App\Http\Controllers\RoutingController;
 use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\SubUser\SubUserController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Auth\UpdateProfileController;
 use App\Http\Controllers\TranslationController;
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +19,9 @@ use App\Http\Controllers\TranslationController;
 */
 
 require __DIR__ . '/auth.php';
+Route::get('admin/confirm-email/{token}', [UpdateProfileController::class, 'confirmEmailChange'])->name('admin.confirmEmailChange');
+
+Route::get('user/confirm-email-change/{token}', [UserController::class, 'confirmEmailChange'])->name('user.confirmEmailChange');
 
 // Admin root route
 Route::get('/admin', function () {
@@ -58,6 +62,9 @@ Route::middleware('set.locale')->group(function () {
 Route::get('/profile', [UserController::class, 'profile'])
     ->name('user.profile')
     ->middleware(['auth:add_user']);
+Route::get('/profile/edit/{id}', [UserController::class, 'userProfileEdit'])
+    ->name('user.profile.edit')
+    ->middleware(['auth:add_user']);	
 Route::get('/dashbaord/add/subuser', [SubUserController::class, 'create'])
     ->name('subuser.add')
     ->middleware(['auth:add_user']);
@@ -88,3 +95,10 @@ Route::group(['prefix' => '/demo', 'middleware' => 'auth'], function () {
 });
 Route::post('/lang/delete/{locale}', [App\Http\Controllers\LanguageController::class, 'delete'])->name('lang.delete');
 Route::post('/language/upload', [App\Http\Controllers\LanguageController::class, 'upload'])->name('language.upload');
+
+
+
+Route::post('/admin/bulk-action', [UserController::class, 'bulkAction'])->middleware(['auth'])->name('users.bulkAction');
+Route::post('/admin/delete/{id}', [UserController::class, 'destroy'])
+    ->middleware(['auth'])
+    ->name('users.destroy');

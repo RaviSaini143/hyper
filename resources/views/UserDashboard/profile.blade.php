@@ -41,15 +41,15 @@
                         <div class="col-sm-4">
                             @if ($authUser->user_type !== 'subuser')
                                 <div class="text-center mt-sm-0 mt-3 text-sm-end">
-                                    <a href="{{route('user.index.profile')}}" type="button" class="btn btn-light">
-                                        <i class="mdi mdi-account-edit me-1"></i> {{ __('Edit Profile') }}
-                                    </a>
+                                    <a href="{{ url('profile/edit/' . $authUser->id) }}" type="button" class="btn btn-light">
+										<i class="mdi mdi-account-edit me-1"></i> {{ __('Edit Profile') }}
+									</a>
                                 </div>
                             @else
                                 <div class="text-center mt-sm-0 mt-3 text-sm-end">
-                                    <a href="{{route('subuser.profile.index')}}" type="button" class="btn btn-light">
-                                        <i class="mdi mdi-account-edit me-1"></i> {{ __('Edit Profile') }}
-                                    </a>
+                                    <a href="{{ url('profile/edit/' . $authUser->id) }}" type="button" class="btn btn-light">
+										<i class="mdi mdi-account-edit me-1"></i> {{ __('Edit Profile') }}
+									</a>
                                 </div>
                             @endif
                         </div> <!-- end col-->

@@ -28,6 +28,7 @@ class AddUser extends Authenticatable
         'zipcode',
         'password',
         'user_type',
+		'services_used',
     ];
 
 

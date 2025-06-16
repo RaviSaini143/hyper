@@ -98,7 +98,10 @@ Route::get('/admin/profile/edit', [UpdateProfileController::class, 'index'])
 
 Route::post('/admin/profile/update/{id}', [UpdateProfileController::class, 'update'])
     ->middleware('auth')
-    ->name('user.update.profile');    
+    ->name('user.update.profile');  
+Route::post('/profile/update/{id}', [UserController::class, 'update_user'])
+    ->middleware(['auth:add_user'])
+    ->name('update.profile'); 	
 //Route::middleware('set.locale')->group(function () {
  #Add User
  Route::get('/admin/user/add', [UserController::class, 'create'])
@@ -112,6 +115,15 @@ Route::post('/admin/profile/update/{id}', [UpdateProfileController::class, 'upda
  Route::get('/admin/user/listing', [UserController::class, 'index'])
     ->middleware('auth')
     ->name('user.listing'); 
+	
+Route::get('/admin/user/edit/{id}', [UserController::class, 'edit'])
+    ->middleware('auth')
+    ->name('user.listing.edit'); 
+
+Route::post('/admin/user/update/{id}', [UserController::class, 'update'])
+    ->middleware('auth')
+    ->name('user.listing.update'); 
+	
 	//Language
 
  Route::get('/admin/language/add', [LanguageController::class, 'create'])
@@ -196,3 +208,13 @@ Route::get('/lang/download', function () {
 })->name('lang.download');	
 
 /* Route::delete('/lang/delete/{locale}', [App\Http\Controllers\LanguageController::class, 'delete'])->name('lang.delete'); */
+
+// Login as user (from admin)
+Route::get('/admin/user/login/{id}', [UserController::class, 'autoLogin'])
+    ->middleware('auth') // regular admin auth
+    ->name('user.auto.login');
+
+// Return to admin
+Route::get('/admin/stop-impersonation', [UserController::class, 'stopImpersonation'])
+    ->middleware('auth:add_user') // now the user is logged in, so this is valid
+    ->name('admin.stop.impersonation');

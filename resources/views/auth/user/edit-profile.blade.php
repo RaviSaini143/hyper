@@ -25,7 +25,7 @@ input.form-control.update {
                                 {{ session('info') }}
                             </div>
 						@else
-                        <form id="profile-update" method="post" action="{{route('user.update.profile',['id' => $authUser->id])}}">
+                        <form id="profile-update" method="post" action="{{route('update.profile',['id' => $authUser->id])}}">
                             @csrf
                         <div class="col-xl-6">
                             <div class="mb-3">

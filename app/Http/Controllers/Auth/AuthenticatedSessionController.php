@@ -114,15 +114,25 @@ class AuthenticatedSessionController extends Controller
 
                 return redirect()->route('login.user');
     }
-	
+
 	public function verifyOtp(Request $request)
 	{
 		$user = User::where('email', $request->email)->first();
+		 $clientIp = $this->getClientIP();
+ 
+		
+	
 		if (!$user) {
 			return response()->json([
 				'status' => 'error',
 				'message' => 'Please enter valid credentials...'
 			], 422);
+		}
+		if ($user->ip_address !== $clientIp) {
+		   return response()->json([
+					'status' => 'error',
+					'message' => 'Unauthorized login from this IP address.'
+				], 422);
 		}
 		$otp = rand(100000, 999999);
 		$user->otp_code = $otp;
@@ -202,6 +212,19 @@ class AuthenticatedSessionController extends Controller
 			'redirect' => route('user.dashboard')
 		]);
 	}
+	private function getClientIP()
+{
+    if (!empty($_SERVER['HTTP_CF_CONNECTING_IP'])) {
+        $ip = $_SERVER['HTTP_CF_CONNECTING_IP'];
+    } elseif (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+        $ip = $_SERVER['HTTP_CLIENT_IP'];
+    } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+        $ip = explode(',', $_SERVER['HTTP_X_FORWARDED_FOR'])[0];
+    } else {
+        $ip = $_SERVER['REMOTE_ADDR'];
+    }
 
+    return filter_var($ip, FILTER_VALIDATE_IP) ? $ip : 'Unknown';
+}
 
 }

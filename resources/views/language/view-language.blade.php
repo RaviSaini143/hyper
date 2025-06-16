@@ -31,28 +31,32 @@
                     <table class="table table-centered w-100 dt-responsive nowrap" id="products-datatable">
                         <thead class="table-light">
                             <tr>
+								<th></th>
                                 <th>{{ __('S.no.') }}</th>
                                 <th>{{ __('Language') }}</th>
                                 <th style="width: 85px;">{{ __('Action') }}</th>
                             </tr>
                         </thead>
-                        <tbody>
-							@foreach($locales as $lang)
-                            <tr>
-                                <td>1</td>
-                                <td>{{$lang}}</td>
-								<td class="table-action">
-									<form action="{{ route('lang.delete', ['locale' => $lang]) }}" method="POST" onsubmit="return confirm('Are you sure to delete {{ $lang }}?');">
-										@csrf
-										<button type="submit" class="action-icon btn btn-link p-0 border-0 bg-transparent">
-											<i class="mdi mdi-delete text-danger"></i>
-										</button>
-									</form>
-								</td>
-                            </tr>
-                           @endforeach
-                        </tbody>
-                    </table>
+							@php $sno = 1; @endphp
+							<tbody>
+								@foreach($locales as $lang)
+								<tr>
+									<td></td>
+									<td>{{ $sno }}</td>
+									<td>{{ $lang }}</td>
+									<td class="table-action">
+										<form action="{{ route('lang.delete', ['locale' => $lang]) }}" method="POST" onsubmit="return confirm('Are you sure to delete {{ $lang }}?');">
+											@csrf
+											<button type="submit" class="action-icon btn btn-link p-0 border-0 bg-transparent">
+												<i class="mdi mdi-delete text-danger"></i>
+											</button>
+										</form>
+									</td>
+								</tr>
+								@php $sno++; @endphp
+								@endforeach
+							</tbody>                    
+						</table>
                 </div>
             </div> <!-- end card-body-->
         </div> <!-- end card-->

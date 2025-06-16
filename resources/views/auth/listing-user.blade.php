@@ -5,6 +5,14 @@
     'node_modules/datatables.net-bs5/css/dataTables.bootstrap5.min.css',
     'node_modules/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css',
     ])
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.bootstrap5.min.css">
+	<style>
+	.bulk-btn {
+    float: right;
+    margin-top: -5em;
+}
+	</style>
 @endsection
 
 @section('content')
@@ -17,17 +25,101 @@
                     <div class="col-sm-5">
                         <a href="{{ route('user.add') }}" class="btn btn-danger mb-2"><i class="mdi mdi-plus-circle me-2"></i> {{ __('Add User') }}</a>
                     </div>
-                    <div class="col-sm-7">
+                    <!-- <div class="col-sm-7">
                         <div class="text-sm-end">
                             <button type="button" class="btn btn-success mb-2 me-1"><i class="mdi mdi-cog-outline"></i></button>
                             <button type="button" class="btn btn-light mb-2 me-1">{{ __('Import') }}</button>
                             <button type="button" class="btn btn-light mb-2">{{ __('Export') }}</button>
                         </div>
-                    </div><!-- end col-->
+                    </div>-->
                 </div>
+<form method="POST" id="bulk-action-form" action="{{ route('users.bulkAction') }}">
+    @csrf
 
-                <div class="table-responsive">
-                    <table class="table table-centered w-100 dt-responsive nowrap" id="products-datatable">
+    <div class="mb-3">
+	<div class="bulk-btn">
+        <button type="submit" name="action" value="suspend" class="btn btn-warning btn-sm">Suspend Selected</button>
+		 <button type="submit" name="action" value="active" class="btn btn-success btn-sm">Active Selected</button>
+        <button type="submit" name="action" value="delete" class="btn btn-danger btn-sm">Delete Selected</button>
+    </div> 
+	</div>
+
+    <div class="table-responsive" style="overflow-x:auto;">
+        <table class="table table-centered w-100 nowrap" id="products-datatable1">
+            <thead class="table-light">
+                <tr>
+                    <th style="width: 20px;">
+                        <input type="checkbox" id="select-all">
+                    </th>
+                    <th>Id</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+					<th>Status</th>
+                    <th>Services used</th>
+                    <th>Address</th>
+                    <th>IP Address</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>Zip Code</th>
+                    
+                    <th>Type</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+			</form>
+                @foreach($users as $user)
+                    <tr>
+                        <td><input type="checkbox" class="user-checkbox" name="users[]" value="{{ $user->id }}" data-user-id="{{ $user->id }}"></td>
+                        <td>{{ $user->id }}</td>
+                        <td>{{ $user->firstname }}</td>
+                        <td>{{ $user->lastname }}</td>
+                        <td>{{ $user->email }}</td>
+                        <td>{{ $user->phone }}</td>
+						<td>
+                                    <form action="{{ route('users.toggleStatus', $user->id) }}" method="POST">
+                                        @csrf
+                                        @if($user->status == 0)
+                                            <button type="submit" class="btn btn-success btn-sm">
+                                                {{ __('Active') }}
+                                            </button>
+                                        @else
+                                            <button type="submit" class="btn btn-danger btn-sm">
+                                                {{ __('Suspended') }}
+                                            </button>
+                                        @endif
+                                    </form>
+                                </td>
+                        <td>{{ $user->services_used ?? 'null' }}</td>
+                        <td>{{ $user->address }}</td>
+                        <td>{{ $user->ipaddress }}</td>
+                        <td>{{ $user->city }}</td>
+                        <td>{{ $user->state }}</td>
+                        <td>{{ $user->zipcode }}</td>
+                        
+                        <td>{{ $user->user_type }}</td>
+                        <td class="table-action">
+                           <a href="#" class="action-icon"><i class="mdi mdi-eye"></i></a>
+                            <a href="{{route('user.listing.edit',$user->id)}}" class="action-icon"><i class="mdi mdi-square-edit-outline"></i></a>
+                           <form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display:inline-block;" onsubmit="return confirm('Are you sure you want to delete this user?');">
+							@csrf
+							<button type="submit" class="btn btn-link p-0 action-icon text-danger">
+								<i class="mdi mdi-delete"></i>
+							</button>
+						</form>
+
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+
+
+                <!--<div class="table-responsive">
+                    <table class="table table-centered w-100 dt-responsive nowrap" id="products-datatable1">
                         <thead class="table-light">
                             <tr>
                                 <th class="all" style="width: 20px;">
@@ -41,6 +133,7 @@
                                 <th>{{ __('Last Name') }}</th>
                                 <th>{{ __('Email') }}</th>
                                 <th>{{ __('Phone') }}</th>
+								<th>{{ __('Services used') }}</th>
                                 <th>{{ __('Address') }}</th>
                                 <th>{{ __('Ip Address') }}</th>
                                 <th>{{ __('City') }}</th>
@@ -60,8 +153,9 @@
                                 <td>{{ $user->lastname }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->phone }}</td>
+								<td>{{ $user->services_used ?? 'null' }}</td>
                                 <td>{{ $user->address }}</td>
-                                <td>{{ $user->ipaddress }}</td>
+                                <td>{{ $user->ipaddress }}</td>				
                                 <td>{{ $user->city }}</td>
                                 <td>{{ $user->state }}</td>
                                 <td>{{ $user->zipcode }}</td>
@@ -89,7 +183,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                </div>
+                </div>-->
             </div> <!-- end card-body-->
         </div> <!-- end card-->
     </div> <!-- end col -->
@@ -99,16 +193,80 @@
 
 @section('script')
 @vite(['resources/js/pages/demo.products.js'])
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
-    @if(session('success'))
-        Swal.fire({
-            title: 'Success!',
-            text: '{{ session('success') }}',
-            icon: 'success',
-            confirmButtonText: 'OK'
-        });
-    @endif
-</script>
+   <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+
+    {{-- DataTables Core + Bootstrap5 + Responsive --}}
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.5.0/js/responsive.bootstrap5.min.js"></script>
+
+    {{-- SweetAlert2 --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        /* $(document).ready(function () {
+            $('#products-datatable1').DataTable({
+    responsive: false, 
+    scrollX: true,     
+    language: {
+        search: "_INPUT_",
+        searchPlaceholder: "Search all fields..."
+    },
+    columnDefs: [
+        { orderable: false, targets: 0 } // first column (checkbox) not sortable
+    ],
+    order: [[1, 'asc']]
+}); */
+
+$(document).ready(function () {
+    // Init DataTable
+    let table = $('#products-datatable1').DataTable({
+        responsive: false,
+        scrollX: true,
+        language: {
+            search: "_INPUT_",
+            searchPlaceholder: "Search all fields..."
+        },
+        order: [[1, 'asc']],
+        columnDefs: [
+            { orderable: false, targets: [0, 14] } // Checkbox + Action columns not sortable
+        ]
+    });
+
+    // Select all checkboxes
+    $('#select-all').on('click', function () {
+        $('.user-checkbox').prop('checked', this.checked);
+    });
+
+    // Sync main checkbox with individual checkboxes
+    $('.user-checkbox').on('change', function () {
+        $('#select-all').prop('checked', $('.user-checkbox:checked').length === $('.user-checkbox').length);
+    });
+$('.status-toggle-form').on('submit', function () {
+    const userId = $(this).data('user-id');
+    $(`.user-checkbox[data-user-id="${userId}"]`).prop('checked', true);
+});
+
+    // Confirm on bulk action
+    $('#bulk-action-form').on('submit', function () {
+        if ($('.user-checkbox:checked').length === 0) {
+            alert('Please select at least one user.');
+            return false;
+        }
+
+        return confirm('Are you sure you want to perform this action on the selected users?');
+    });
+});
+            @if(session('success'))
+                Swal.fire({
+                    title: 'Success!',
+                    text: '{{ session('success') }}',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                });
+            @endif
+       
+    </script>
 
 @endsection
