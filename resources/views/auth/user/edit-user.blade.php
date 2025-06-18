@@ -96,6 +96,20 @@
                                                 <input class="form-control" type="text" placeholder="{{ __('Enter your services') }}" name="services_used" id="services_used" value="{{$user->services_used}}" required/>
                                             </div>
                                         </div>
+									<div class="col-md-6">
+                                            <div class="mb-3">
+                                               <label for="timezone" class="form-label">Select Timezone</label>
+													<select name="timezone" class="form-control" required>
+														<option value="">Select Timezone</option>
+														@foreach ($timezoneList as $tz)
+															<option value="{{ $tz['name'] }}" {{ $user->timezone == $tz['name'] ? 'selected' : '' }}>
+												{{ $tz['name'] }}
+											</option>
+
+														@endforeach
+													</select>
+                                            </div>
+                                        </div>
                                     </div> <!-- end row -->
 
                                     <div class="row mt-4">

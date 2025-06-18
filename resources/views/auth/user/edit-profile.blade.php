@@ -1,5 +1,5 @@
 
-@extends('layouts.detached', ['title' => 'Profile'])
+@extends('layouts.user.detached', ['title' => 'Profile'])
 <style>
 input.form-control.update {
     width: 85px;
@@ -7,7 +7,7 @@ input.form-control.update {
 }
     </style>
 @section('content')
-    @include('layouts.shared/page-title', ['sub_title' => 'Pages', 'page_title' => 'Profile'])
+    @include('layouts.shared/page-title', ['sub_title' => __('Edit'), 'page_title' => __('Profile')])
     
     <div class="row">
         <div class="col-12">
@@ -30,8 +30,8 @@ input.form-control.update {
                         <div class="col-xl-6">
                             <div class="mb-3">
                                   <input type="hidden" id="id" class="form-control" value="{{$authUser->id}}">
-                                <label for="name" class="form-label">Name</label>
-                                <input type="text" id="name" name="name" class="form-control" placeholder="Enter your name" value="{{$authUser->name}}">
+                                <label for="name" class="form-label">{{ __('Name') }}</label>
+                                <input type="text" id="name" name="name" class="form-control" placeholder="{{ __('Enter your name') }}" value="{{$authUser->firstname}}">
                             </div>
 
                           
@@ -79,7 +79,7 @@ input.form-control.update {
 
                         <div class="col-xl-6">
                             <div class="mb-3 position-relative" id="email">
-                                <label class="form-label">Email</label>
+                                <label class="form-label">{{ __('Email') }}</label>
                                 <input type="text" class="form-control" name="email" value="{{$authUser->email}}">
                             </div>
 

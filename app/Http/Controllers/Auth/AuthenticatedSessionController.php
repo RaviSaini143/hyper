@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Mail\SendOtpMail;
 use App\Mail\SendUserOtpMail;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -34,7 +35,7 @@ class AuthenticatedSessionController extends Controller
      * @param  \App\Http\Requests\Auth\LoginRequest  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(LoginRequest $request)
+    /* public function store(LoginRequest $request)
     {
 
         $request->authenticate();
@@ -45,7 +46,7 @@ class AuthenticatedSessionController extends Controller
         
 
    
-    }
+    } */
 
     /**
      * Destroy an authenticated session.
@@ -70,7 +71,7 @@ class AuthenticatedSessionController extends Controller
         {
             return view('auth.user-login');
         }
-        public function storeuser(LoginUserRequest $request)
+       /*  public function storeuser(LoginUserRequest $request)
     {
 	
 			$credentials = $request->only('email', 'password');
@@ -100,7 +101,7 @@ class AuthenticatedSessionController extends Controller
         ]);
 
    
-    }
+    } */
 
     public function destroyuser(Request $request)
     {
@@ -128,12 +129,12 @@ class AuthenticatedSessionController extends Controller
 				'message' => 'Please enter valid credentials...'
 			], 422);
 		}
-		if ($user->ip_address !== $clientIp) {
+		/* if ($user->ip_address !== $clientIp) {
 		   return response()->json([
 					'status' => 'error',
 					'message' => 'Unauthorized login from this IP address.'
 				], 422);
-		}
+		} */
 		$otp = rand(100000, 999999);
 		$user->otp_code = $otp;
 		$user->save();
@@ -162,12 +163,20 @@ class AuthenticatedSessionController extends Controller
 	public function verifyOtpUser(Request $request)
 	{
 		$user = AddUser::where('email', $request->email)->first();
+		if ($user->deleted_at == 1) {
+			
+			return response()->json([
+				'status' => 'error',
+				'message' => 'User Not found'
+			], 422);
+		}
 		if (!$user || !Hash::check($request->password, $user->password)) {
 			return response()->json([
 				'status' => 'error',
 				'message' => 'Please enter valid credentials...'
 			], 422);
 		}
+		
         if ($user->status == 1) {
 			
 			return response()->json([
@@ -206,11 +215,27 @@ class AuthenticatedSessionController extends Controller
 		$user->save();
 
 		$request->session()->regenerate();
+$userType = Str::lower($user->user_type);
+$redirectUrl = match ($userType) {
+    'user' => route('user.dashboard'),
+    'subuser' => route('subuser.homedashboard'),
+};
 
-		return response()->json([
+if (!$redirectUrl) {
+        return response()->json([
+            'status' => 'error',
+            'message' => 'Invalid user type.'
+        ], 400);
+    }
+
+    return response()->json([
+        'status' => 'success',
+        'redirect' => $redirectUrl
+    ]);
+		/* return response()->json([
 			'status' => 'success',
 			'redirect' => route('user.dashboard')
-		]);
+		]); */
 	}
 	private function getClientIP()
 {

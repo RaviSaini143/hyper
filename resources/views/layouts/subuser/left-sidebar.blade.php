@@ -59,7 +59,7 @@ $user = auth()->user();
                     <span>{{ __('Dashboard') }}</span>
                 </a>
             </li>
-
+@if ($user->user_type !== 'subuser')
           <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#sidebarDashboards" aria-expanded="false"
                    aria-controls="sidebarDashboards" class="side-nav-link">
@@ -78,7 +78,7 @@ $user = auth()->user();
                     </ul>
                 </div>
             </li>
- 
+   @endif
 
 
 

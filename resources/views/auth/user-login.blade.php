@@ -212,9 +212,9 @@ $(document).ready(function () {
 				allowOutsideClick: false,
 				allowEscapeKey: false
                 }).then(() => {
-					 const userDashboardUrl = "{{ route('user.dashboard') }}";
-                window.location.href = userDashboardUrl;
-
+					 /* const userDashboardUrl = "{{ route('user.dashboard') }}";
+                window.location.href = userDashboardUrl; */
+ window.location.href = res.redirect;
                 });
             },
             error: function (err) {

@@ -97,12 +97,26 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="mb-3">
+                                               <label for="timezone" class="form-label">{{ __('Select Timezone') }}</label>
+													<select name="timezone" class="form-control" required>
+														<option value="">{{ __('Select Timezone') }}</option>
+														@foreach ($timezoneList as $tz)
+															<option value="{{ $tz['name'] }}">
+																{{ $tz['name'] }}
+															</option>
+														@endforeach
+													</select>
+                                            </div>
+                                        </div>
+                                    </div> <!-- end row -->
+									<div class="row">
+                                        <div class="col-md-12">
+                                            <div class="mb-3">
                                                 <label for="password" class="form-label">{{ __('Password') }}</label>
                                                 <input class="form-control" type="password" placeholder="{{ __('Enter your password') }}" name="password" id="password" required/>
                                             </div>
                                         </div>
                                     </div> <!-- end row -->
-
                                     <div class="row mt-4">
                                         <div class="col-sm-6">
                                             <a href="{{ url('/') }}" class="btn text-muted d-none d-sm-inline-block btn-link fw-semibold">

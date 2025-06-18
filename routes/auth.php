@@ -123,7 +123,9 @@ Route::get('/admin/user/edit/{id}', [UserController::class, 'edit'])
 Route::post('/admin/user/update/{id}', [UserController::class, 'update'])
     ->middleware('auth')
     ->name('user.listing.update'); 
-	
+	// routes/web.php
+Route::get('/users/ajax', [UserController::class, 'getUsers']) ->middleware('auth')->name('users.ajax');
+Route::get('/admin/deleted/ajax', [UserController::class, 'getDeletedUser']) ->middleware('auth')->name('deleteduser.ajax');
 	//Language
 
  Route::get('/admin/language/add', [LanguageController::class, 'create'])
@@ -218,3 +220,7 @@ Route::get('/admin/user/login/{id}', [UserController::class, 'autoLogin'])
 Route::get('/admin/stop-impersonation', [UserController::class, 'stopImpersonation'])
     ->middleware('auth:add_user') // now the user is logged in, so this is valid
     ->name('admin.stop.impersonation');
+Route::middleware('set.locale')->group(function () {
+Route::get('/admin/ips_listing', [UserController::class, 'ips_listing']) ->middleware('auth')->name('admin.ips_listing');
+Route::get('/admin/deletedUser', [UserController::class, 'deletedUser']) ->middleware('auth')->name('admin.deletedUser');
+});

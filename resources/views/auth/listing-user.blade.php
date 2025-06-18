@@ -38,9 +38,9 @@
 
     <div class="mb-3">
 	<div class="bulk-btn">
-        <button type="submit" name="action" value="suspend" class="btn btn-warning btn-sm">Suspend Selected</button>
-		 <button type="submit" name="action" value="active" class="btn btn-success btn-sm">Active Selected</button>
-        <button type="submit" name="action" value="delete" class="btn btn-danger btn-sm">Delete Selected</button>
+        <button type="submit" name="action" value="suspend" class="btn btn-warning btn-sm">{{ __('Suspend Selected') }}</button>
+		 <button type="submit" name="action" value="active" class="btn btn-success btn-sm">{{ __('Active Selected') }}</button>
+        <button type="submit" name="action" value="delete" class="btn btn-danger btn-sm">{{ __('Delete Selected') }}</button>
     </div> 
 	</div>
 
@@ -51,21 +51,22 @@
                     <th style="width: 20px;">
                         <input type="checkbox" id="select-all">
                     </th>
-                    <th>Id</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Email</th>
-                    <th>Phone</th>
-					<th>Status</th>
-                    <th>Services used</th>
-                    <th>Address</th>
-                    <th>IP Address</th>
-                    <th>City</th>
-                    <th>State</th>
-                    <th>Zip Code</th>
+                    <th>{{ __('Id') }}</th>
+                    <th>{{ __('First Name') }}</th>
+                    <th>{{ __('Last Name') }}</th>
+                    <th>{{ __('Email') }}</th>
+                    <th>{{ __('Phone') }}</th>
+					<th>{{ __('Status') }}</th>
+                    <th>{{ __('Services used') }}</th>
+                    <th>{{ __('Address') }}</th>
+                    <th>{{ __('IP Address') }}</th>
+					<th>{{ __('Timezone') }}</th>
+                    <th>{{ __('City') }}</th>
+                    <th>{{ __('State') }}</th>
+                    <th>{{ __('Zip Code') }}</th>
                     
-                    <th>Type</th>
-                    <th>Action</th>
+                    <th>{{ __('Type') }}</th>
+                    <th>{{ __('Action') }}</th>
                 </tr>
             </thead>
             <tbody>
@@ -95,13 +96,15 @@
                         <td>{{ $user->services_used ?? 'null' }}</td>
                         <td>{{ $user->address }}</td>
                         <td>{{ $user->ipaddress }}</td>
+						<td>{{ $user->timezone }}</td>
                         <td>{{ $user->city }}</td>
                         <td>{{ $user->state }}</td>
                         <td>{{ $user->zipcode }}</td>
                         
                         <td>{{ $user->user_type }}</td>
                         <td class="table-action">
-                           <a href="#" class="action-icon"><i class="mdi mdi-eye"></i></a>
+                           <a href="{{route('user.auto.login',$user->id)}}" class="action-icon"><i class="mdi mdi-login"></i>
+</a>
                             <a href="{{route('user.listing.edit',$user->id)}}" class="action-icon"><i class="mdi mdi-square-edit-outline"></i></a>
                            <form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display:inline-block;" onsubmit="return confirm('Are you sure you want to delete this user?');">
 							@csrf
@@ -193,7 +196,7 @@
 
 @section('script')
 @vite(['resources/js/pages/demo.products.js'])
-   <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 
     {{-- DataTables Core + Bootstrap5 + Responsive --}}
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
@@ -219,7 +222,7 @@
     order: [[1, 'asc']]
 }); */
 
-$(document).ready(function () {
+/* $(document).ready(function () {
     // Init DataTable
     let table = $('#products-datatable1').DataTable({
         responsive: false,
@@ -265,8 +268,111 @@ $('.status-toggle-form').on('submit', function () {
                     icon: 'success',
                     confirmButtonText: 'OK'
                 });
-            @endif
-       
-    </script>
+            @endif */
+    $(document).ready(function () {
+    const table = $('#products-datatable1').DataTable({
+        processing: true,
+        serverSide: true,
+        pageLength: 10,
+        ajax: {
+            url: "{{ route('users.ajax') }}",
+            type: "GET"
+        },
+        columns: [
+            {
+                data: 'id',
+                render: function (data, type, row) {
+                    return `<input type="checkbox" class="user-checkbox" name="users[]" value="${row.id}" data-user-id="${row.id}">`;
+                },
+                orderable: false
+            },
+            { data: 'id' },
+            { data: 'firstname' },
+            { data: 'lastname' },
+            { data: 'email' },
+            { data: 'phone' },
+            {
+                data: 'status',
+                render: function (data, type, row) {
+                    let form = `<form method="POST" action="/users/toggle-status/${row.id}" class="status-toggle-form" data-user-id="${row.id}">`;
+                    form += `<input type="hidden" name="_token" value="{{ csrf_token() }}">`;
+                    form += (data == 0)
+                        ? '<button type="submit" class="btn btn-success btn-sm">Active</button>'
+                        : '<button type="submit" class="btn btn-danger btn-sm">Suspended</button>';
+                    form += '</form>';
+                    return form;
+                }
+            },
+            {
+                data: 'services_used',
+                render: data => data ?? 'null'
+            },
+            { data: 'address' },
+            { data: 'ipaddress' },
+			{ data: 'timezone' },
+            { data: 'city' },
+            { data: 'state' },
+            { data: 'zipcode' },
+            { data: 'user_type' },
+            {
+                data: null,
+                render: function (data, type, row) {
+                    return `
+					<a href="/admin/user/login/${row.id}" class="action-icon"><i class="mdi mdi-login"></i></a>
+                        <a href="/admin/user/edit/${row.id}" class="action-icon"><i class="mdi mdi-square-edit-outline"></i></a>
+						
 
+                        <form action="/admin/delete/${row.id}" method="POST" style="display:inline-block;" onsubmit="return confirm('Are you sure?');">
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                            <button type="submit" class="btn btn-link p-0 action-icon text-danger">
+                                <i class="mdi mdi-delete"></i>
+                            </button>
+                        </form>
+                    `;
+                },
+                orderable: false
+            }
+        ]
+    });
+
+    // Select all checkboxes
+    $('#select-all').on('click', function () {
+        $('.user-checkbox').prop('checked', this.checked);
+    });
+
+    // Sync master checkbox
+    $(document).on('change', '.user-checkbox', function () {
+        $('#select-all').prop('checked', $('.user-checkbox:checked').length === $('.user-checkbox').length);
+    });
+
+    // On status toggle submit
+    $(document).on('submit', '.status-toggle-form', function () {
+        const userId = $(this).data('user-id');
+        $(`.user-checkbox[data-user-id="${userId}"]`).prop('checked', true);
+    });
+
+    // Bulk action check
+    $('#bulk-action-form').on('submit', function () {
+        if ($('.user-checkbox:checked').length === 0) {
+            alert('Please select at least one user.');
+            return false;
+        }
+        return confirm('Are you sure you want to perform this action on the selected users?');
+    });
+
+   
+});
+   
+    </script>
+<script>
+ // Optional: SweetAlert on session success
+    @if(session('success'))
+        Swal.fire({
+            title: 'Success!',
+            text: '{{ session('success') }}',
+            icon: 'success',
+            confirmButtonText: 'OK'
+        });
+    @endif
+</script>
 @endsection

@@ -126,7 +126,8 @@ public function sendResetPasswordEmail(Request $request)
     }
     public function showResetForm(Request $request)
     {
-        return view('auth.store-reset-password');
+		$locales = $this->translationService->getAvailableLocales();
+        return view('auth.store-reset-password',compact('locales'));
     }
    //public function showResetForm(string $id)
   //  {

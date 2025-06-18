@@ -12,7 +12,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ConfirmEmailChange;
-
+use DateTime;
+use DateTimeZone;
 use Illuminate\Support\Str;
 
 class UserController extends Controller
@@ -28,10 +29,79 @@ class UserController extends Controller
     }
       public function home()
     {
+
 		$locales = $this->translationService->getAvailableLocales();
         $authUser = Auth::user();
+		 if ($authUser->user_type === 'subuser') {
+				return redirect()->route('subuser.homedashboard');
+			}
         return view('UserDashboard.index',compact('authUser','locales'));
     }
+	public function getUsers(Request $request)
+{
+    $query = AddUser::where('user_type', 'user')->where('deleted_at', 0);
+
+    // 🔍 Handle search
+    if (!empty($request->input('search.value'))) {
+        $search = $request->input('search.value');
+        $query->where(function ($q) use ($search) {
+            $q->where('firstname', 'like', "%{$search}%")
+              ->orWhere('lastname', 'like', "%{$search}%")
+              ->orWhere('email', 'like', "%{$search}%")
+              ->orWhere('phone', 'like', "%{$search}%")
+			   ->orWhere('timezone', 'like', "%{$search}%")
+              ->orWhere('city', 'like', "%{$search}%")
+              ->orWhere('state', 'like', "%{$search}%")
+              ->orWhere('zipcode', 'like', "%{$search}%");
+        });
+    }
+
+    $total = AddUser::where('user_type', 'user')->where('deleted_at', 0)->count();
+    $filtered = $query->count();
+
+    // Pagination
+    $start = $request->input('start', 0);
+    $length = $request->input('length', 10);
+    $users = $query->skip($start)->take($length)->get();
+
+    return response()->json([
+        'draw' => intval($request->input('draw')),
+        'recordsTotal' => $total,
+        'recordsFiltered' => $filtered,
+        'data' => $users,
+    ]);
+}
+public function getDeletedUser(Request $request)
+{
+    $query = AddUser::where('user_type', 'user')->where('deleted_at', 1);
+
+    // 🔍 Handle search
+    if (!empty($request->input('search.value'))) {
+        $search = $request->input('search.value');
+        $query->where(function ($q) use ($search) {
+            $q->where('firstname', 'like', "%{$search}%")
+              ->orWhere('lastname', 'like', "%{$search}%")
+              ->orWhere('email', 'like', "%{$search}%");
+        });
+    }
+
+    $total = AddUser::where('user_type', 'user')->where('deleted_at', 1)->count();
+    $filtered = $query->count();
+
+    // Pagination
+    $start = $request->input('start', 0);
+    $length = $request->input('length', 10);
+    $users = $query->skip($start)->take($length)->get();
+
+    return response()->json([
+        'draw' => intval($request->input('draw')),
+        'recordsTotal' => $total,
+        'recordsFiltered' => $filtered,
+        'data' => $users,
+    ]);
+}
+
+
 
 
     public function index()
@@ -47,8 +117,18 @@ class UserController extends Controller
      */
     public function create(Request $request)
     {
+	 $timezones = DateTimeZone::listIdentifiers();
+		$timezoneList = [];
+
+		foreach ($timezones as $tz) {
+			$dt = new DateTime("now", new DateTimeZone($tz));
+			$timezoneList[] = [
+				'name' => $tz,
+				'current_time' => $dt->format('Y-m-d H:i:s'),
+			];
+		}
 		$locales = $this->translationService->getAvailableLocales();
-        return view('auth.add-user',compact('locales'));
+        return view('auth.add-user',compact('locales','timezoneList'));
     } 
 
     private function getClientIP()
@@ -113,9 +193,19 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
+$timezones = DateTimeZone::listIdentifiers();
+		$timezoneList = [];
+
+		foreach ($timezones as $tz) {
+			$dt = new DateTime("now", new DateTimeZone($tz));
+			$timezoneList[] = [
+				'name' => $tz,
+				'current_time' => $dt->format('Y-m-d H:i:s'),
+			];
+		}
 		$user = AddUser::findOrFail($id);
 		$locales = $this->translationService->getAvailableLocales();
-        return view('auth.user.edit-user',compact('locales','user'));
+        return view('auth.user.edit-user',compact('locales','user','timezoneList'));
     }
 
     /**
@@ -134,6 +224,7 @@ class UserController extends Controller
         'state' => 'required|string|max:255',
         'zipcode' => 'required|string|max:20',
         'services_used' => 'nullable|string|max:255',
+		'timezone' => 'nullable|string|max:255',
     ]);
 
     $user = AddUser::findOrFail($id);
@@ -149,6 +240,7 @@ class UserController extends Controller
         'state' => $request->state,
         'zipcode' => $request->zipcode,
         'services_used' => $request->services_used,
+		'timezone' => $request->timezone,
     ]);
 
     return redirect()->route('user.listing')->with('success', 'User updated successfully!');
@@ -159,11 +251,34 @@ class UserController extends Controller
      */
    public function destroy($id)
 {
-    DB::table('add_users')->where('id', $id)->update(['deleted_at' => 1]);
-
+	
+	
+    $delete_user = DB::table('add_users')->where('id', $id)->update(['deleted_at' => 1]);
+	 $delete_subuser = DB::table('add_users')
+        ->where('user_type', 'subuser')
+        ->where('user_id', $id)
+        ->update(['deleted_at' => 1]);
     return redirect()->back()->with('success', 'User deleted successfully.');
 }
 
+  public function destroyDeleted($id)
+{
+	
+	
+    $delete_user = DB::table('add_users')->where('id', $id)->delete();
+	 $delete_subuser = DB::table('add_users')
+        ->where('user_type', 'subuser')
+        ->where('user_id', $id)
+        ->delete();
+    return redirect()->back()->with('success', 'User permanent deleted successfully.');
+}
+
+  public function destroyIp($id)
+{
+    DB::table('add_users')->where('id', $id)->update(['deleted_at' => 1]);
+
+    return redirect()->back()->with('success', 'Ip with User deleted successfully.');
+}
 
     public function profile(){
 		$locales = $this->translationService->getAvailableLocales();
@@ -291,4 +406,48 @@ public function stopImpersonation()
     return redirect($redirect); // go back to admin dashboard
 }
 
+public function ips_listing(){
+	$users = AddUser::where('user_type','=','user')->where('deleted_at', 0)->get();
+	$locales = $this->translationService->getAvailableLocales();	
+	return view('auth.ips-listing',compact('users','locales'));
+}
+
+public function deletedUser(){
+	$users = AddUser::where('user_type','=','user')->where('deleted_at', 1)->get();
+	$locales = $this->translationService->getAvailableLocales();
+	return view('auth.deleted-user',compact('users','locales'));
+}
+public function bulkActionDeletedUser(Request $request)
+{
+    $userIds = $request->input('users', []);
+    $action = $request->input('action');
+
+    if (empty($userIds)) {
+        return redirect()->back()->with('error', 'No users selected.');
+    }
+
+    switch ($action) {
+        case 'restore':
+            DB::table('add_users')->whereIn('id', $userIds)->update(['deleted_at' => 0]);
+            return redirect()->back()->with('success', 'Selected users restored.');
+		
+        case 'delete':
+            DB::table('add_users')
+                ->where('user_type', 'subuser')
+                ->whereIn('user_id', $userIds)
+                ->delete();
+
+            DB::table('add_users')->whereIn('id', $userIds)->delete();
+            return redirect()->back()->with('success', 'Selected users permanent deleted.');
+        default:
+            return redirect()->back()->with('error', 'Invalid action.');
+    }
+}
+
+public function restore($id)
+{
+    DB::table('add_users')->where('id', $id)->update(['deleted_at' => 0]);
+
+    return redirect()->back()->with('success', 'User Restored successfully.');
+}
 }

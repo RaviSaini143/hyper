@@ -1,4 +1,4 @@
-@extends('layouts.user.detached', ['title' => __('Dashboard')])
+@extends('layouts.subuser.detached', ['title' => __('Dashboard')])
 
 @section('css')
     @vite(['node_modules/daterangepicker/daterangepicker.css', 'node_modules/jsvectormap/dist/jsvectormap.min.css'])
@@ -39,19 +39,13 @@
                         </div> <!-- end col-->
 
                         <div class="col-sm-4">
-                            @if ($authUser->user_type !== 'subuser')
+                           
                                 <div class="text-center mt-sm-0 mt-3 text-sm-end">
-                                    <a href="{{ url('dashboard/profile/edit/' . $authUser->id) }}" type="button" class="btn btn-light">
+                                    <a href="{{ route('subuser.profile.index' , $authUser->id) }}" type="button" class="btn btn-light">
 										<i class="mdi mdi-account-edit me-1"></i> {{ __('Edit Profile') }}
 									</a>
                                 </div>
-                            @else
-                                <div class="text-center mt-sm-0 mt-3 text-sm-end">
-                                    <a href="{{ url('/dashboard/profile/edit/' . $authUser->id) }}" type="button" class="btn btn-light">
-										<i class="mdi mdi-account-edit me-1"></i> {{ __('Edit Profile') }}
-									</a>
-                                </div>
-                            @endif
+                           
                         </div> <!-- end col-->
                     </div> <!-- end row -->
                 </div> <!-- end card-body/ profile-user-box-->

@@ -1,4 +1,4 @@
-@extends('layouts.user.detached', ['title' => 'Dashboard'])
+@extends('layouts.detached', ['title' => 'Ip Listing'])
 
 @section('css')
 @vite([
@@ -10,20 +10,24 @@
 	<style>
 	.bulk-btn {
     float: right;
-    margin-top: -5em;
+    margin-top: -3em;
 }
 	</style>
 @endsection
 
 @section('content')
-@include('layouts.shared/page-title',['page_title' => __('Sub Users'),'sub_title' => __('Sub Users')])
+@include('layouts.shared.page-title', [
+    'page_title' =>  __('Ip Listing'),
+    'sub_title' => __('Ip Listing')
+])
+
 <div class="row">
     <div class="col-12">
         <div class="card">
             <div class="card-body">
                 <div class="row mb-2">
                     <div class="col-sm-5">
-                        <a href="{{ route('subuser.add') }}" class="btn btn-danger mb-2"><i class="mdi mdi-plus-circle me-2"></i> {{ __('Add User') }}</a>
+                       <!-- <a href="{{ route('user.add') }}" class="btn btn-danger mb-2"><i class="mdi mdi-plus-circle me-2"></i> {{ __('Add User') }}</a>-->
                     </div>
                     <!-- <div class="col-sm-7">
                         <div class="text-sm-end">
@@ -33,39 +37,25 @@
                         </div>
                     </div>-->
                 </div>
-<form method="POST" id="bulk-action-form" action="{{ route('subuser.bulkAction') }}">
+<form method="POST" id="bulk-action-form" action="{{ route('users.bulkAction') }}">
     @csrf
 
     <div class="mb-3">
 	<div class="bulk-btn">
-        <button type="submit" name="action" value="suspend" class="btn btn-warning btn-sm"> {{ __('Suspend Selected') }}</button>
-		 <button type="submit" name="action" value="active" class="btn btn-success btn-sm"> {{ __('Active Selected') }}</button>
-        <button type="submit" name="action" value="delete" class="btn btn-danger btn-sm"> {{ __('Delete Selected') }}</button>
+        <button type="submit" name="action" value="delete" class="btn btn-danger btn-sm">{{ __('Delete Ip') }}</button>
     </div> 
 	</div>
 
     <div class="table-responsive" style="overflow-x:auto;">
-        <table class="table table-centered w-100 nowrap" id="products-datatable12">
+        <table class="table table-centered w-100 nowrap" id="products-datatable123">
             <thead class="table-light">
                 <tr>
                     <th style="width: 20px;">
                         <input type="checkbox" id="select-all">
                     </th>
-                    <th> {{ __('Id') }}</th>
-                    <th> {{ __('First Name') }}</th>
-                    <th> {{ __('Last Name') }}</th>
-                    <th> {{ __('Email') }}</th>
-                    <th> {{ __('Phone') }}</th>
-					<th> {{ __('Status') }}</th>
-                    <th> {{ __('Services used') }}</th>
-                    <th> {{ __('Address') }}</th>
-                    <th> {{ __('IP Address') }}</th>
-                    <th> {{ __('City') }}</th>
-                    <th> {{ __('State') }}</th>
-                    <th> {{ __('Zip Code') }}</th>
-                    
-                    <th> {{ __('Type') }}</th>
-                    <th> {{ __('Action') }}</th>
+                    <th>{{ __('IP Address') }}</th>
+                    <th>{{ __('Email') }}</th>
+                    <th>{{ __('Action') }}</th>
                 </tr>
             </thead>
             <tbody>
@@ -73,38 +63,13 @@
                 @foreach($users as $user)
                     <tr>
                         <td><input type="checkbox" class="user-checkbox" name="users[]" value="{{ $user->id }}" data-user-id="{{ $user->id }}"></td>
-                        <td>{{ $user->id }}</td>
-                        <td>{{ $user->firstname }}</td>
-                        <td>{{ $user->lastname }}</td>
-                        <td>{{ $user->email }}</td>
-                        <td>{{ $user->phone }}</td>
-						<td>
-                                    <form action="{{ route('subuser.toggleStatus', $user->id) }}" method="POST">
-                                        @csrf
-                                        @if($user->status == 0)
-                                            <button type="submit" class="btn btn-success btn-sm">
-                                                {{ __('Active') }}
-                                            </button>
-                                        @else
-                                            <button type="submit" class="btn btn-danger btn-sm">
-                                                {{ __('Suspended') }}
-                                            </button>
-                                        @endif
-                                    </form>
-                                </td>
-                        <td>{{ $user->services_used ?? 'null' }}</td>
-                        <td>{{ $user->address }}</td>
+                       
                         <td>{{ $user->ipaddress }}</td>
-                        <td>{{ $user->city }}</td>
-                        <td>{{ $user->state }}</td>
-                        <td>{{ $user->zipcode }}</td>
-                        
-                        <td>{{ $user->user_type }}</td>
+                        <td>{{ $user->email }}</td>
+                      
                         <td class="table-action">
-                           <a href="#" class="action-icon"><i class="mdi mdi-login"></i>
-</a>
-                            <a href="{{route('subuser.edit',$user->id)}}" class="action-icon"><i class="mdi mdi-square-edit-outline"></i></a>
-                           <form action="{{ route('subuser.destroy', $user->id) }}" method="POST" style="display:inline-block;" onsubmit="return confirm('Are you sure you want to delete this user?');">
+                         
+                           <form action="{{ route('users.destroy.ip', $user->id) }}" method="POST" style="display:inline-block;" onsubmit="return confirm('Are you sure you want to delete this user?');">
 							@csrf
 							<button type="submit" class="btn btn-link p-0 action-icon text-danger">
 								<i class="mdi mdi-delete"></i>
@@ -268,12 +233,12 @@ $('.status-toggle-form').on('submit', function () {
                 });
             @endif */
     $(document).ready(function () {
-    const table = $('#products-datatable12').DataTable({
+    const table = $('#products-datatable123').DataTable({
         processing: true,
         serverSide: true,
         pageLength: 10,
         ajax: {
-            url: "{{ route('subuser.ajax') }}",
+            url: "{{ route('users.ajax') }}",
             type: "GET"
         },
         columns: [
@@ -284,42 +249,16 @@ $('.status-toggle-form').on('submit', function () {
                 },
                 orderable: false
             },
-            { data: 'id' },
-            { data: 'firstname' },
-            { data: 'lastname' },
-            { data: 'email' },
-            { data: 'phone' },
-            {
-                data: 'status',
-                render: function (data, type, row) {
-                    let form = `<form method="POST" action="/dashbaord/subuser/toggle-status/${row.id}" class="status-toggle-form" data-user-id="${row.id}">`;
-                    form += `<input type="hidden" name="_token" value="{{ csrf_token() }}">`;
-                    form += (data == 0)
-                        ? '<button type="submit" class="btn btn-success btn-sm"> {{ __('Active') }}</button>'
-                        : '<button type="submit" class="btn btn-danger btn-sm">{{ __('Suspended') }}</button>';
-                    form += '</form>';
-                    return form;
-                }
-            },
-            {
-                data: 'services_used',
-                render: data => data ?? 'null'
-            },
-            { data: 'address' },
+          
             { data: 'ipaddress' },
-            { data: 'city' },
-            { data: 'state' },
-            { data: 'zipcode' },
-            { data: 'user_type' },
+            { data: 'email' },
+            
+           
             {
                 data: null,
                 render: function (data, type, row) {
                     return `
-					
-                        <a href="/dashbaord/subuser/edit/${row.id}" class="action-icon"><i class="mdi mdi-square-edit-outline"></i></a>
-						
-
-                        <form action="/dashbaord/subuser/delete/${row.id}" method="POST" style="display:inline-block;" onsubmit="return confirm('Are you sure?');">
+                        <form action="/admin/deleteip/${row.id}" method="POST" style="display:inline-block;" onsubmit="return confirm('Are you sure?');">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <button type="submit" class="btn btn-link p-0 action-icon text-danger">
                                 <i class="mdi mdi-delete"></i>
@@ -357,7 +296,12 @@ $('.status-toggle-form').on('submit', function () {
         return confirm('Are you sure you want to perform this action on the selected users?');
     });
 
-    // Optional: SweetAlert on session success
+    
+});
+   
+    </script>
+<script>
+// Optional: SweetAlert on session success
     @if(session('success'))
         Swal.fire({
             title: 'Success!',
@@ -366,8 +310,5 @@ $('.status-toggle-form').on('submit', function () {
             confirmButtonText: 'OK'
         });
     @endif
-});
-   
-    </script>
-
+</script>
 @endsection

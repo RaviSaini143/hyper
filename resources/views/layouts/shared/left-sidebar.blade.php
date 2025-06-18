@@ -78,6 +78,12 @@
                     </ul>
                 </div>
             </li>
+			 <li class="side-nav-item">
+                <a href="{{ route('admin.deletedUser') }}" class="side-nav-link">
+                   <i class="uil-trash-alt"></i>
+                    <span>{{ __('Deleted User') }}</span>
+                </a>
+            </li>
 			<li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#sidebarEcommerce1" aria-expanded="false" aria-controls="sidebarEcommerce1" class="side-nav-link">
                      <i class="uil-clipboard-alt"></i>
@@ -95,14 +101,14 @@
                     </ul>
                 </div>
             </li>
-           <!-- <li class="side-nav-item">
-                <a href="{{ route('second', ['apps', 'calendar']) }}" class="side-nav-link">
+           <li class="side-nav-item">
+                <a href="{{ route('admin.ips_listing') }}" class="side-nav-link">
                     <i class="uil-calender"></i>
-                    <span>{{ __('Calendar') }}</span>
+                    <span>{{ __('IPs Listing') }}</span>
                 </a>
             </li>
-
-            <li class="side-nav-item">
+			
+            <!--li class="side-nav-item">
                 <a href="{{ route('second', ['apps', 'chat']) }}" class="side-nav-link">
                     <i class="uil-comments-alt"></i>
                     <span>{{ __('Chat') }}</span>

@@ -28,7 +28,7 @@
 					<div class="alert alert-danger">{{ session('error') }}</div>
 				@endif
                 <div class="table-responsive">
-                    <table class="table table-centered w-100 dt-responsive nowrap" id="products-datatable">
+                    <table class="table table-centered w-100 dt-responsive nowrap">
                         <thead class="table-light">
                             <tr>
 								<th></th>

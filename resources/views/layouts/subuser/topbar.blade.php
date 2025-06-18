@@ -375,7 +375,7 @@
                     </div>
 
                     <!-- item-->
-                    <a href="{{route('user.profile')}}" class="dropdown-item">
+                    <a href="{{route('subuser.profile')}}" class="dropdown-item">
                         <i class="mdi mdi-account-circle me-1"></i>
                         <span>{{ __('My Account') }}</span>
                     </a>

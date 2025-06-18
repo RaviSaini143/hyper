@@ -29,6 +29,8 @@ class AddUser extends Authenticatable
         'password',
         'user_type',
 		'services_used',
+		'timezone',
+		'permissions',
     ];
 
 
